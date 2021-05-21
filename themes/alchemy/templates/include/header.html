@@ -22,11 +22,9 @@ fab fa-{{icon}}
   <div class="col-sm-{% if SITEIMAGE %}8{% else %}12{% endif %}">
     <h1 class="title" style="font-family: ExodarOut;font-weight: lighter;"><a href="{{ SITEURL }}/">{{ SITENAME }}</a>
     </h1>
-    <!--
     {% if SITESUBTITLE %}
     <p class="text-muted">{{ SITESUBTITLE }}</p>
     {% endif %}
-    -->
     {% if LINKS or (DISPLAY_PAGES_ON_MENU and pages) or ICONS or MAIL %}
     <ul class="list-inline">
       {% for title, link in LINKS %}
