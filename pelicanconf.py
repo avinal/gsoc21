@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*- #
 AUTHOR = 'Avinal Kumar'
 HIDE_AUTHORS = True
-SITENAME = "GSoC'21 @ FOSSology"
-SITESUBTITLE = ''
+SITENAME = "New Buildsystem and CI/CD"
+SITESUBTITLE = 'Google Summer of Code 2021 @ FOSSology'
 SITEURL = 'https://gsoc.avinal.space'
 THEME = 'themes/alchemy'
 PATH = 'content'
@@ -44,11 +44,18 @@ EXTRA_PATH_METADATA = {
     'extras/CNAME': {'path': 'CNAME'},
 }
 
-RFG_FAVICONS = False
+RFG_FAVICONS = True
+
+LINKS = [
+    ('blog', "https://avinal.space"),
+    ('FOSSology', "https://www.fossology.org/"),
+    
+]
 
 # icons
 ICONS = [
-    ('github', "https://github.com/avinal"),
+    ('google', 'https://summerofcode.withgoogle.com/projects/#4535841440923648'),
+    ('github', "https://github.com/fossology/fossology"),
     ('linkedin', 'https://www.linkedin.com/in/avinal/')
 ]
 
