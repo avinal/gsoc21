@@ -1,5 +1,4 @@
 # build folders
 output
 __pycache__
-*.txt
 .vscode
