@@ -3,13 +3,15 @@
 AUTHOR = 'Avinal Kumar'
 HIDE_AUTHORS = True
 SITENAME = "New Buildsystem and CI/CD"
-SITESUBTITLE = 'Google Summer of Code 2021 @ FOSSology'
+SITESUBTITLE = 'A GSoC project by Avinal Kumar'
 SITEURL = 'https://gsoc.avinal.space'
 THEME = 'themes/alchemy'
 PATH = 'content'
 MAIL = 'avinal.xlvii@gmail.com'
 TIMEZONE = 'Asia/Kolkata'
 DEFAULT_LANG = 'en'
+
+ARTICLE_IMAGE = '/images/gsoc-fossology.gif'
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
