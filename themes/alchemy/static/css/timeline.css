@@ -161,7 +161,7 @@
 }
 
 .uk-card-default .uk-card-header {
-	border-bottom: 1px solid #e5e5e5;
+	border: 1px solid #e5e5e5;
 }
 
 .uk-badge {
@@ -210,7 +210,7 @@
 }
 
 .uk-label-warning {
-	background-color: #faa05a;
+	background-color:orange;
 	color: #fff;
 }
 

@@ -4,7 +4,7 @@ Timeline
 
 .. raw:: html
 
-    <link rel="stylesheet" href="https://gsoc.avinal.space/theme/css/timeline.css">
+    <link rel="stylesheet" href="/theme/css/timeline.css">
     <div class="uk-container uk-padding">
     <div class="uk-timeline">
         <div class="uk-timeline-item">
@@ -17,7 +17,7 @@ Timeline
                         <div class="uk-grid-small uk-flex-middle" uk-grid>
                             <h4 class="uk-card-title"><time datetime="2021-06-06">Community Bonding <br>(May 17th - June
                                     6th, 2021)</time></h4>
-                            <span class="uk-label uk-label-success uk-margin-auto-left">In Progress</span>
+                            <span class="uk-label uk-label-warning uk-margin-auto-left">In Progress</span>
                         </div>
                     </div>
                     <div class="uk-card-body">
@@ -159,8 +159,7 @@ Timeline
                     <div class="uk-card-header">
                         <div class="uk-grid-small uk-flex-middle" uk-grid>
                             <h4 class="uk-card-title"><time datetime="2020-07-11">Coding Week 6 <br>(July 12th - July
-                                    18th,
-                                    2021) First Evaluation</time></h4>
+                                    18th, 2021)</time></h4>
                             <span class="uk-label uk-label-evaluation uk-margin-auto-left">First Evaluation</span>
                         </div>
                     </div>
@@ -302,7 +301,6 @@ Timeline
                             <h4 class="uk-card-title"><time datetime="2020-07-11">Final Evaluations <br>(August 16th -
                                     August 23rd, 2021)
                                 </time></h4>
-                            <span class="uk-label uk-label-evaluation uk-margin-auto-left">Final Evaluation</span>
                         </div>
                     </div>
                     <div class="uk-card-body">
@@ -316,3 +314,5 @@ Timeline
     </div>
     </div>
     <script src='https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit.min.js'></script>
+
+    
