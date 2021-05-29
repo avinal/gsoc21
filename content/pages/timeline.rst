@@ -2,6 +2,10 @@
 Timeline
 ********
 
+:summary: FOSSology’s build system is based on multilevel makefiles that work together to provide a build infrastructure for the project. Although make is a robust build system but it is too outdated and slow compared to modern build systems.
+
+This is the proposed timeline for my GSoC project.
+
 .. raw:: html
 
     <link rel="stylesheet" href="/theme/css/timeline.css">
@@ -71,7 +75,7 @@ Timeline
                 <div class="uk-card uk-card-default uk-margin-medium-bottom uk-overflow-auto">
                     <div class="uk-card-header">
                         <div class="uk-grid-small uk-flex-middle" uk-grid>
-                            <h4 class="uk-card-title"><time datetime="2020-06-27">Coding Week 2 & 3 <br>(June 14th -
+                            <h4 class="uk-card-title"><time datetime="2020-06-27">Coding Week 2 & 3 🚩<br>(June 14th -
                                     June 27th, 2021)</time></h4>
                         </div>
                     </div>
@@ -131,7 +135,7 @@ Timeline
                 <div class="uk-card uk-card-default uk-margin-medium-bottom uk-overflow-auto">
                     <div class="uk-card-header">
                         <div class="uk-grid-small uk-flex-middle" uk-grid>
-                            <h4 class="uk-card-title"><time datetime="2020-07-11">Coding Week 5 <br>(July 5th - July
+                            <h4 class="uk-card-title"><time datetime="2020-07-11">Coding Week 5 🚩<br>(July 5th - July
                                     11th,
                                     2021)</time></h4>
                         </div>
@@ -218,7 +222,7 @@ Timeline
                 <div class="uk-card uk-card-default uk-margin-medium-bottom uk-overflow-auto">
                     <div class="uk-card-header">
                         <div class="uk-grid-small uk-flex-middle" uk-grid>
-                            <h4 class="uk-card-title"><time datetime="2020-07-11">Coding Week 8 <br>(July 26th - August
+                            <h4 class="uk-card-title"><time datetime="2020-07-11">Coding Week 8 🚩<br>(July 26th - August
                                     1st,
                                     2021)
                                 </time></h4>
@@ -271,7 +275,7 @@ Timeline
                 <div class="uk-card uk-card-default uk-margin-medium-bottom uk-overflow-auto">
                     <div class="uk-card-header">
                         <div class="uk-grid-small uk-flex-middle" uk-grid>
-                            <h4 class="uk-card-title"><time datetime="2020-07-11">Coding week 10 <br>(August 9th -
+                            <h4 class="uk-card-title"><time datetime="2020-07-11">Coding week 10 🚩<br>(August 9th -
                                     August
                                     15th, 2021)
                                 </time></h4>
@@ -298,7 +302,7 @@ Timeline
                 <div class="uk-card uk-card-default uk-margin-medium-bottom uk-overflow-auto">
                     <div class="uk-card-header">
                         <div class="uk-grid-small uk-flex-middle" uk-grid>
-                            <h4 class="uk-card-title"><time datetime="2020-07-11">Final Evaluations <br>(August 16th -
+                            <h4 class="uk-card-title"><time datetime="2020-07-11">Final Evaluations 🚩<br>(August 16th -
                                     August 23rd, 2021)
                                 </time></h4>
                         </div>
@@ -315,4 +319,3 @@ Timeline
     </div>
     <script src='https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit.min.js'></script>
 
-    
