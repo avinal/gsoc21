@@ -67,3 +67,15 @@ DEFAULT_PAGINATION = 10
 
 PYGMENTS_STYLE = 'manni'
 
+
+# Comments config
+
+FORM_COMMENTS = True
+
+FORM_PROPERTIES = {
+    'name' : 'entry.982725972',
+    'email':'entry.1652853191',
+    'link':'entry.1641222305',
+    'comment':'entry.1062656232',
+    'action':'https://docs.google.com/forms/u/0/d/e/1FAIpQLSfL9T8WBRm-Ac2uyu74lJXSYOqAuF6lLIUAulRArCsuiI1ZRQ/formResponse'
+}
