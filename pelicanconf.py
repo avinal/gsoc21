@@ -7,7 +7,7 @@ SITESUBTITLE = 'A GSoC project by <a href="https://github.com/avinal">Avinal Kum
 SITEURL = 'https://gsoc.avinal.space'
 THEME = 'themes/alchemy'
 PATH = 'content'
-MAIL = 'avinal.xlvii@gmail.com'
+MAIL = 'blog@avinal.space'
 TIMEZONE = 'Asia/Kolkata'
 DEFAULT_LANG = 'en'
 
@@ -56,7 +56,7 @@ LINKS = [
 # icons
 ICONS = [
     ('google', 'https://summerofcode.withgoogle.com/projects/#4535841440923648'),
-    ('github', "https://github.com/fossology/fossology"),
+    ('github', "https://github.com/avinal/fossology"),
     ('linkedin', 'https://www.linkedin.com/in/avinal/')
 ]
 
