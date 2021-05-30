@@ -10,13 +10,7 @@
 {% endblock %}
 
 {% block page_header %}
-{% if article.link %}
-<a href="{{ article.link }}" rel="bookmark">
-  {% endif %}
-  {{ article.title }}
-  {% if article.link %}
-  <i class="fas fa-link"></i></a>
-{% endif %}
+{{ article.title }}
 {% endblock %}
 
 {% block content %}
@@ -59,9 +53,10 @@
   </header>
   <div class="content">
     {{ article.content }}
+    <hr>
     {% if article.link %}
-    <p class="link-button"><a href="{{ article.link }}" rel="bookmark">
-        <i class="fas fa-link"></i> view link
+    <p class="link-button"><i class="fas fa-link"></i> <a href="{{ article.link }}" rel="bookmark">
+        {{ article.link }}
       </a></p>
     {% endif %}
   </div>

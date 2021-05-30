@@ -3,7 +3,7 @@
 AUTHOR = 'Avinal Kumar'
 HIDE_AUTHORS = True
 SITENAME = "New Buildsystem and CI/CD"
-SITESUBTITLE = 'A GSoC project by Avinal Kumar'
+SITESUBTITLE = 'A GSoC project by <a href="https://github.com/avinal">Avinal Kumar</a>'
 SITEURL = 'https://gsoc.avinal.space'
 THEME = 'themes/alchemy'
 PATH = 'content'
@@ -19,7 +19,6 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
-
 
 # URL Flexibility
 ARTICLE_URL = 'posts/{category}/{slug}.html'
@@ -67,3 +66,4 @@ SITEMAP_SAVE_AS = 'sitemap.xml'
 DEFAULT_PAGINATION = 10
 
 PYGMENTS_STYLE = 'manni'
+
