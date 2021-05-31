@@ -10,8 +10,8 @@ Community Bonding Meeting 0
 
 
 .. raw:: html
-
-    <p style="border: 2px solid var(--cyan);border-radius: 7px;" align=center>This meeting is the first of the recurring weekly GSoC project meetings. In this meeting the current status of progress according to the proposal was discussed and some topics related to current build system based on Make and the new build system based on CMake.<p>
+  
+  <div class="alert alert-info" role="alert">This meeting is the first of the recurring weekly GSoC project meetings. In this meeting the current status of progress according to the proposal was discussed and some topics related to current build system based on Make and the new build system based on CMake.</div>
 
 Attendees
 ---------
