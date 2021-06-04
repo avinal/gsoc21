@@ -25,6 +25,7 @@ This is the proposed timeline for my GSoC project.
                         </div>
                         <p><i class="fas fa-users"></i> Meetings:  
                         <a href="https://gsoc.avinal.space/posts/meet/meeting-0.html">0</a>
+                        <a href="https://gsoc.avinal.space/posts/meet/meeting-1.html"> 1</a>
                         </p>
                     </div>
                     <div class="uk-card-body">
