@@ -21,7 +21,7 @@ This is the proposed timeline for my GSoC project.
                         <div class="uk-grid-small uk-flex-middle" uk-grid>
                             <h4 class="uk-card-title"><time datetime="2021-06-06">Community Bonding <br>(May 17th - June
                                     6th, 2021)</time></h4>
-                            <span class="uk-label uk-label-warning uk-margin-auto-left">In Progress</span>  
+                            <span class="uk-label uk-label-success uk-margin-auto-left">Completed</span>  
                         </div>
                         <p><i class="fas fa-users"></i> Meetings:  
                         <a href="https://gsoc.avinal.space/posts/meet/meeting-0.html">0</a>
@@ -55,6 +55,7 @@ This is the proposed timeline for my GSoC project.
                             <h4 class="uk-card-title"><time datetime="2020-06-13">Coding Week 1 <br>(June 7th - June
                                     13th,
                                     2021)</time></h4>
+                                    <span class="uk-label uk-label-progress uk-margin-auto-left">In Progress</span>
                         </div>
                     </div>
                     <div class="uk-card-body">
