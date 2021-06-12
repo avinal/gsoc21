@@ -57,6 +57,9 @@ This is the proposed timeline for my GSoC project.
                                     2021)</time></h4>
                                     <span class="uk-label uk-label-progress uk-margin-auto-left">In Progress</span>
                         </div>
+                        <p><i class="fas fa-users"></i> Meetings:  
+                        <a href="https://gsoc.avinal.space/posts/meet/meeting-2.html">2</a>
+                        </p>
                     </div>
                     <div class="uk-card-body">
                         <p>
