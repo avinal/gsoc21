@@ -79,3 +79,8 @@ FORM_PROPERTIES = {
     'comment':'entry.1062656232',
     'action':'https://docs.google.com/forms/u/0/d/e/1FAIpQLSfL9T8WBRm-Ac2uyu74lJXSYOqAuF6lLIUAulRArCsuiI1ZRQ/formResponse'
 }
+
+DEFAULT_METADATA = {
+    'status': 'draft',
+}
+

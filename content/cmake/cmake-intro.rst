@@ -2,6 +2,7 @@
 Hello CMake!
 ************
 
+:status: published
 :date: 2021-05-24 23:56
 :slug: introduction-to-cmake
 :category: cmake

@@ -1,7 +1,7 @@
 ********
 Timeline
 ********
-
+:status: published
 :summary: FOSSology’s build system is based on multilevel makefiles that work together to provide a build infrastructure for the project. Although make is a robust build system but it is too outdated and slow compared to modern build systems.
 
 This is the proposed timeline for my GSoC project.

@@ -7,7 +7,7 @@ Community Bonding Meeting 1
 :category: meet
 :summary: In this second meeting points over default Makefiles were discussed. Ninja can be used as an alternative for Makefiles.
 :slug: meeting-1
-
+:status: published
 
 .. raw:: html
   
@@ -23,7 +23,7 @@ Attendees
 Discussions
 -----------
 
-* What is the use of :code:`Makefile.deps` and :code:`Makefile.process` files?
+* **What is the use of** :code:`Makefile.deps` **and** :code:`Makefile.process` **files?**
   
   - :code:`Makefile.deps` consists of many used and unused snippets. These snippets help setup the build and test environment for fossology. Since there are many directories that are hardcoded, special care is required while replacing this file.
   - :code:`Makefile.process` generates a master variable from list of variables. It assists the script in :code:`Makefile.conf` file. These files together generate a list of variables that can be used throughout the build process. 

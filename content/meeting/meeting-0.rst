@@ -7,6 +7,7 @@ Community Bonding Meeting 0
 :category: meet
 :summary: This meeting is the first of the recurring weekly GSoC project meetings. In this meeting the current status of progress according to the proposal was discussed and some topics related to current build system based on Make and the new build system based on CMake. 
 :slug: meeting-0
+:status: published
 
 
 .. raw:: html
@@ -24,17 +25,17 @@ Attendees
 Discussions
 -----------
 
-* The current progress according to schedule
+* **The current progress according to schedule**
 
   - The blog on CMake is on the way. 
   - I have gone through the Makefiles to get a rough estimate of the work. 
   - Published the GSoC project blog 
   
-* How are agents related to each other in terms of compilation?
+* **How are agents related to each other in terms of compilation?**
 
   - Each agent is independently compiled and generally use the source code in :code:`lib` folder. If any agent needs other agent then it uses the library files instead.
    
-* Does every agent have a executable and library?
+* **Does every agent have a executable and library?**
   
   - Not necessarily, there are agents written in C, C++ and PHP, depending on what is the use the configuration can be different.
 
