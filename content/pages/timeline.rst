@@ -86,6 +86,10 @@ This is the proposed timeline for my GSoC project.
                             <h4 class="uk-card-title"><time datetime="2020-06-27">Coding Week 2 & 3 🚩<br>(June 14th -
                                     June 27th, 2021)</time></h4>
                         </div>
+                        <p><i class="fas fa-users"></i> Meetings:  
+                        <a href="https://gsoc.avinal.space/posts/meet/meeting-3.html">3</a>
+                        <a href="https://gsoc.avinal.space/posts/meet/meeting-4.html"> 4</a>
+                        </p>
                     </div>
                     <div class="uk-card-body">
                         <p>
