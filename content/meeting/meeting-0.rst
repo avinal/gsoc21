@@ -19,8 +19,9 @@ Attendees
 - `Gaurav Mishra <https://github.com/GMishx>`_
 - `Anupam Ghosh <https://github.com/ag4ums>`_
 - `Ayush Bhardwaj <https://github.com/hastagAB>`_
-- `Avinal Kumar <https://github.com/avinal>`_
 - `Sarita Singh <https://github.com/itssingh>`_
+- `Avinal Kumar <https://github.com/avinal>`_
+
 
 Discussions
 -----------

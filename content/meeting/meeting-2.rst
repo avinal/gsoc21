@@ -21,8 +21,9 @@ Attendees
 - `Gaurav Mishra <https://github.com/GMishx>`_
 - `Anupam Ghosh <https://github.com/ag4ums>`_
 - `Ayush Bhardwaj <https://github.com/hastagAB>`_
-- `Avinal Kumar <https://github.com/avinal>`_
 - `Sarita Singh <https://github.com/itssingh>`_
+- `Avinal Kumar <https://github.com/avinal>`_
+
 
 Week 1 Progress
 ---------------
@@ -35,7 +36,7 @@ Week 1 Progress
     <li>Completed the basic skeleton.</li>
     <li>Completed the CMake configuration for libraries</li>
     <li>To test the current progress, follow the instructions <a href="https://github.com/avinal/FOSSology/wiki#test-the-new-system-only-gcc-with-make-and-ninja-tested-for-now">here</a></li>
-    <li>Test on <a href="https://gitpod.io/#https://github.com/avinal/FOSSology/tree/avinal/feat/cmake-buildsystem">GitPod</a> right inside your browser. </li>
+    <li>Test on <a href="https://gitpod.io/#https://github.com/avinal/FOSSology/tree/avinal/feat/cmake-buildsystem">GitPod</a> right inside your browser. </li></ul></p>
     </div>
     <div class="embed-responsive embed-responsive-16by9">
         <iframe class="embed-responsive-item" src="/images/first-build-gitpod.webm" allowfullscreen></iframe>

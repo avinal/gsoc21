@@ -19,8 +19,9 @@ Attendees
 - `Michael C. Jaeger <https://github.com/mcjaeger>`_
 - `Shaheem Azmal M MD <https://github.com/shaheemazmalmmd>`_
 - `Gaurav Mishra <https://github.com/GMishx>`_
-- `Avinal Kumar <https://github.com/avinal>`_
 - `Sarita Singh <https://github.com/itssingh>`_
+- `Avinal Kumar <https://github.com/avinal>`_
+
 
 Week 2 Progress
 ---------------
@@ -33,6 +34,7 @@ Week 2 Progress
     <li>Resolved parallel build problems with coverage configs</li>
     <li>Implemented generated source configurations</li>
     <li>To test the current progress, follow the instructions <a href="https://github.com/avinal/FOSSology/wiki#test-the-new-system-only-gcc-with-make-and-ninja-tested-for-now">here</a></li>
+    </ul></p>
     </div>
     <div class="embed-responsive embed-responsive-16by9">
         <iframe class="embed-responsive-item" src="/images/second-build.webm" allowfullscreen></iframe>
