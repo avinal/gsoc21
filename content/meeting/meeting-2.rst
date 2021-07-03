@@ -2,9 +2,9 @@
 Coding Week 1 Meeting
 *********************
 
-:date: 2021-06-12 23:30
+:date: 2021-06-11 23:30
 :tags: gsoc, FOSSology
-:category: meet
+:category: report
 :summary: In this third meeting, I demoed the working build system, currently building executables and libraries, a lot of queries were resolved about writing version files and attaching commits and hashes to the build. 
 :slug: meeting-2
 :status: published

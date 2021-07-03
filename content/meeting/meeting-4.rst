@@ -1,10 +1,10 @@
-*********************
-Coding Week 3 Meeting
-*********************
+***********************
+Coding Week 3 Meeting-1
+***********************
 
 :date: 2021-06-22 23:22
 :tags: gsoc, FOSSology
-:category: meet
+:category: report
 :summary: In this fifth meeting, question related to versioning and obtaining commit hash were discussed, this was a short meeting. 
 :slug: meeting-4
 :status: published
@@ -22,7 +22,7 @@ Attendees
 - `Avinal Kumar <https://github.com/avinal>`_
 
 
-Week 2 Progress
+Week 3 Progress
 ---------------
 
 .. raw:: html

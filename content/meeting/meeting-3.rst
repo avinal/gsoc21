@@ -4,7 +4,7 @@ Coding Week 2 Meeting
 
 :date: 2021-06-18 23:30
 :tags: gsoc, FOSSology
-:category: meet
+:category: report
 :summary: In this fourth meeting, a lot of questions were discussed related to the existing build system and what things we have to drop or modify. 
 :slug: meeting-3
 :status: published

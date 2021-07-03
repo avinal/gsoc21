@@ -55,7 +55,7 @@ This is the proposed timeline for my GSoC project.
                             <h4 class="uk-card-title"><time datetime="2020-06-13">Coding Week 1 <br>(June 7th - June
                                     13th,
                                     2021)</time></h4>
-                                    <span class="uk-label uk-label-progress uk-margin-auto-left">In Progress</span>
+                                    <span class="uk-label uk-label-success uk-margin-auto-left">Completed</span>
                         </div>
                         <p><i class="fas fa-users"></i> Meetings:  
                         <a href="https://gsoc.avinal.space/posts/meet/meeting-2.html">2</a>
@@ -85,6 +85,7 @@ This is the proposed timeline for my GSoC project.
                         <div class="uk-grid-small uk-flex-middle" uk-grid>
                             <h4 class="uk-card-title"><time datetime="2020-06-27">Coding Week 2 & 3 🚩<br>(June 14th -
                                     June 27th, 2021)</time></h4>
+                                    <span class="uk-label uk-label-success uk-margin-auto-left">Completed</span>
                         </div>
                         <p><i class="fas fa-users"></i> Meetings:  
                         <a href="https://gsoc.avinal.space/posts/meet/meeting-3.html">3</a>
@@ -118,7 +119,12 @@ This is the proposed timeline for my GSoC project.
                             <h4 class="uk-card-title"><time datetime="2020-07-04">Coding Week 4 <br>(June 28th - July
                                     4th,
                                     2021)</time></h4>
+                                    <span class="uk-label uk-label-success uk-margin-auto-left">Completed</span>
                         </div>
+                        <p><i class="fas fa-users"></i> Meetings:  
+                        <a href="https://gsoc.avinal.space/posts/meet/meeting-6.html">6</a>
+                        <a href="https://gsoc.avinal.space/posts/meet/meeting-7.html"> 7</a>
+                        </p>
                     </div>
                     <div class="uk-card-body">
                         <p>
@@ -150,6 +156,7 @@ This is the proposed timeline for my GSoC project.
                             <h4 class="uk-card-title"><time datetime="2020-07-11">Coding Week 5 🚩<br>(July 5th - July
                                     11th,
                                     2021)</time></h4>
+                                    <span class="uk-label uk-label-progress uk-margin-auto-left">In Progress</span>
                         </div>
                     </div>
                     <div class="uk-card-body">
