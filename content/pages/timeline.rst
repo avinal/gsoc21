@@ -4,10 +4,10 @@ Timeline
 :status: published
 :summary: FOSSology’s build system is based on multilevel makefiles that work together to provide a build infrastructure for the project. Although make is a robust build system but it is too outdated and slow compared to modern build systems.
 
-This is the proposed timeline for my GSoC project.
-
 .. raw:: html
 
+    <div>
+    <span>Time spent: <a href="https://wakatime.com/badge/github/avinal/fossology"><img src="https://wakatime.com/badge/github/avinal/fossology.svg" ></a></span></div>
     <link rel="stylesheet" href="/theme/css/timeline.css">
     <div class="uk-container uk-padding">
     <div class="uk-timeline">
