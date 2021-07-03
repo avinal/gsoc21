@@ -3,7 +3,7 @@
 AUTHOR = 'Avinal Kumar'
 HIDE_AUTHORS = True
 SITENAME = "New Buildsystem and CI/CD"
-SITESUBTITLE = 'A GSoC project by <a href="https://github.com/avinal">Avinal Kumar</a>'
+SITESUBTITLE = 'A GSoC project by Avinal Kumar'
 SITEURL = 'https://gsoc.avinal.space'
 THEME = 'themes/alchemy'
 PATH = 'content'
@@ -48,15 +48,14 @@ EXTRA_PATH_METADATA = {
 RFG_FAVICONS = True
 
 LINKS = [
-    ('blog', "https://avinal.space"),
-    ('FOSSology', "https://www.fossology.org/"),
+    ('about me', "https://avinal.space"),
     
 ]
 
 # icons
 ICONS = [
     ('google', 'https://summerofcode.withgoogle.com/projects/#4535841440923648'),
-    ('github', "https://github.com/avinal/fossology"),
+    ('github', "https://github.com/avinal/fossology/tree/avinal/feat/cmake-buildsystem"),
     ('linkedin', 'https://www.linkedin.com/in/avinal/')
 ]
 
