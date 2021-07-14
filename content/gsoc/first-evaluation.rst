@@ -31,7 +31,7 @@ Improvements
 How to test
 -----------
 
-Instructions to test the new Build system is in `this <https://github.com/avinal/fossology/wiki#test-the-new-system-only-gcc-with-make-and-ninja-tested-for-now>` wiki. 
+Instructions to test the new Build system is in `this <https://github.com/avinal/fossology/wiki#test-the-new-system-only-gcc-with-make-and-ninja-tested-for-now>`_ wiki. 
 
 Known Issues
 ------------
