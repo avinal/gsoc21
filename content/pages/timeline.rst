@@ -24,8 +24,8 @@ Timeline
                             <span class="uk-label uk-label-success uk-margin-auto-left">Completed</span>  
                         </div>
                         <p><i class="fas fa-users"></i> Meetings:  
-                        <a href="https://gsoc.avinal.space/posts/meet/meeting-0.html">0</a>
-                        <a href="https://gsoc.avinal.space/posts/meet/meeting-1.html"> 1</a>
+                        <a href="https://gsoc.avinal.space/posts/report/meeting-0.html">0</a>
+                        <a href="https://gsoc.avinal.space/posts/report/meeting-1.html"> 1</a>
                         </p>
                     </div>
                     <div class="uk-card-body">
@@ -58,7 +58,7 @@ Timeline
                                     <span class="uk-label uk-label-success uk-margin-auto-left">Completed</span>
                         </div>
                         <p><i class="fas fa-users"></i> Meetings:  
-                        <a href="https://gsoc.avinal.space/posts/meet/meeting-2.html">2</a>
+                        <a href="https://gsoc.avinal.space/posts/report/meeting-2.html">2</a>
                         </p>
                     </div>
                     <div class="uk-card-body">
@@ -88,8 +88,8 @@ Timeline
                                     <span class="uk-label uk-label-success uk-margin-auto-left">Completed</span>
                         </div>
                         <p><i class="fas fa-users"></i> Meetings:  
-                        <a href="https://gsoc.avinal.space/posts/meet/meeting-3.html">3</a>
-                        <a href="https://gsoc.avinal.space/posts/meet/meeting-4.html"> 4</a>
+                        <a href="https://gsoc.avinal.space/posts/report/meeting-3.html">3</a>
+                        <a href="https://gsoc.avinal.space/posts/report/meeting-4.html"> 4</a>
                         </p>
                     </div>
                     <div class="uk-card-body">
@@ -122,8 +122,8 @@ Timeline
                                     <span class="uk-label uk-label-success uk-margin-auto-left">Completed</span>
                         </div>
                         <p><i class="fas fa-users"></i> Meetings:  
-                        <a href="https://gsoc.avinal.space/posts/meet/meeting-6.html">6</a>
-                        <a href="https://gsoc.avinal.space/posts/meet/meeting-7.html"> 7</a>
+                        <a href="https://gsoc.avinal.space/posts/report/meeting-5.html">5</a>
+                        <a href="https://gsoc.avinal.space/posts/report/meeting-6.html"> 6</a>
                         </p>
                     </div>
                     <div class="uk-card-body">
@@ -156,8 +156,11 @@ Timeline
                             <h4 class="uk-card-title"><time datetime="2020-07-11">Coding Week 5 🚩<br>(July 5th - July
                                     11th,
                                     2021)</time></h4>
-                                    <span class="uk-label uk-label-progress uk-margin-auto-left">In Progress</span>
+                                    <span class="uk-label uk-label-success uk-margin-auto-left">Completed</span>
                         </div>
+                        <p><i class="fas fa-users"></i> Meetings:  
+                        <a href="https://gsoc.avinal.space/posts/report/meeting-7.html">7</a>
+                        </p>
                     </div>
                     <div class="uk-card-body">
                         <p>
@@ -183,8 +186,9 @@ Timeline
                         <div class="uk-grid-small uk-flex-middle" uk-grid>
                             <h4 class="uk-card-title"><time datetime="2020-07-11">Coding Week 6 <br>(July 12th - July
                                     18th, 2021)</time></h4>
-                            <span class="uk-label uk-label-evaluation uk-margin-auto-left">First Evaluation</span>
-                        </div>
+                            <span class="uk-label uk-label-evaluation uk-margin-auto-left">First Evaluation</span><span class="uk-label uk-label-success uk-margin-auto-left">Completed</span>
+                        </div> 
+                        <a href="https://gsoc.avinal.space/posts/report/first-evaluation.html">First Evaluation Report</a>
                     </div>
                     <div class="uk-card-body">
                         <p>
@@ -216,7 +220,11 @@ Timeline
                                     25th,
                                     2021)
                                 </time></h4>
+                                <span class="uk-label uk-label-success uk-margin-auto-left">Completed</span>
                         </div>
+                        <p><i class="fas fa-users"></i> Meetings:  
+                        <a href="https://gsoc.avinal.space/posts/report/meeting-8.html">8</a>
+                        </p>
                     </div>
                     <div class="uk-card-body">
                         <p>
@@ -245,7 +253,11 @@ Timeline
                                     1st,
                                     2021)
                                 </time></h4>
+                                <span class="uk-label uk-label-success uk-margin-auto-left">Completed</span>
                         </div>
+                        <p><i class="fas fa-users"></i> Meetings:  
+                        <a href="https://gsoc.avinal.space/posts/report/meeting-9.html">9</a>
+                        </p>
                     </div>
                     <div class="uk-card-body">
                         <p>
@@ -272,6 +284,7 @@ Timeline
                             <h4 class="uk-card-title"><time datetime="2020-07-11">Coding Week 9 <br>(August 2nd - August
                                     8th, 2021)
                                 </time></h4>
+                                <span class="uk-label uk-label-progress uk-margin-auto-left">In Progress</span>
                         </div>
                     </div>
                     <div class="uk-card-body">
