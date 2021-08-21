@@ -32,7 +32,7 @@ The CMake Build system
 
 FOSSology is quite an old and mature project. The project has been using bare metal **Makefiles**. As the project is growing with new agents and modernization it was required to have a modern build system. 
 
-The FOSSology is a suite of well-integrated and synchronized subprojects (called agents) written in C, C++, and PHP. Most of the major agents are in C, C++ and that made CMake an obvious choice for a new build system for FOSSology. CMake is a versatile set of build, test, and packaging tools and is the most popular choice of C/C++ developers. CMake can be extended to create a build system for other languages too via custom scripts. 
+The FOSSology is a suite of well-integrated and synchronized sub-projects (called agents) written in C, C++, and PHP. Most of the major agents are in C, C++ and that made CMake an obvious choice for a new build system for FOSSology. CMake is a versatile set of build, test, and packaging tools and is the most popular choice of C/C++ developers. CMake can be extended to create a build system for other languages too via custom scripts. 
 
 
 GitHub Actions CI/CD
@@ -254,7 +254,7 @@ Each agent is a complete CMake sub-project with its independent configuration fo
 
 The :code:`cmake` directory contains customized CMake modules and templates for FOSSology. This directory is required for all the operations. The general workflow of the new build system as well as how to use it as described below.
 
-1. Since the new build system is still in review. You must fork FOSSolohy and pull the `#2075 <https://github.com/fossology/fossology/pull/2075>`_ pull request branch. Once you are in FOSSology root, run these commands.
+1. Since the new build system is still in review. You must fork FOSSology and pull the `#2075 <https://github.com/fossology/fossology/pull/2075>`_ pull request branch. Once you are in FOSSology root, run these commands.
 
     .. code-block:: bash
 

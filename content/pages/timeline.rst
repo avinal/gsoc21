@@ -284,8 +284,11 @@ Timeline
                             <h4 class="uk-card-title"><time datetime="2020-07-11">Coding Week 9 <br>(August 2nd - August
                                     8th, 2021)
                                 </time></h4>
-                                <span class="uk-label uk-label-progress uk-margin-auto-left">In Progress</span>
+                                <span class="uk-label uk-label-success uk-margin-auto-left">Completed</span>
                         </div>
+                        <p><i class="fas fa-users"></i> Meetings:  
+                        <a href="https://gsoc.avinal.space/posts/report/meeting-10.html">10</a>
+                        </p>
                     </div>
                     <div class="uk-card-body">
                         <p>
@@ -307,11 +310,12 @@ Timeline
                 <div class="uk-card uk-card-default uk-margin-medium-bottom uk-overflow-auto">
                     <div class="uk-card-header">
                         <div class="uk-grid-small uk-flex-middle" uk-grid>
-                            <h4 class="uk-card-title"><time datetime="2020-07-11">Coding week 10 🚩<br>(August 9th -
-                                    August
-                                    15th, 2021)
-                                </time></h4>
+                            <h4 class="uk-card-title"><time datetime="2020-07-11">Coding week 10 🚩<br>(August 9th - August 15th, 2021) </time></h4>
+                            <span class="uk-label uk-label-success uk-margin-auto-left">Completed</span>
                         </div>
+                        <p><i class="fas fa-users"></i> Meetings:  
+                        <a href="https://gsoc.avinal.space/posts/report/meeting-11.html">11</a>
+                        </p>
                     </div>
                     <div class="uk-card-body">
                         <p>
@@ -337,11 +341,12 @@ Timeline
                             <h4 class="uk-card-title"><time datetime="2020-07-11">Final Evaluations 🚩<br>(August 16th -
                                     August 23rd, 2021)
                                 </time></h4>
+                                <span class="uk-label uk-label-success uk-margin-auto-left">Completed</span>
                         </div>
                     </div>
                     <div class="uk-card-body">
                         <p>
-                            Code and report submission
+                            Code and report submission: <a href="https://gsoc.avinal.space/posts/gsoc/final-evaluation.html">Final Evaluation Report</a>
                         </p>
                     </div>
                 </div>
