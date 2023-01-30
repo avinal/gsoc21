@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Coding Week 10 Meeting | New Buildsystem and CI/CD
+</title>
+  <link rel="canonical" href="https://gsoc.avinal.space/posts/report/meeting-11.html">
+
+  <link rel="apple-touch-icon" href="https://gsoc.avinal.space/apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" type="image/png" href="https://gsoc.avinal.space/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="https://gsoc.avinal.space/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="https://gsoc.avinal.space/site.webmanifest">
+  <meta name="theme-color" content="#333333">
+
+  <link rel="stylesheet" href="https://gsoc.avinal.space/theme/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://gsoc.avinal.space/theme/css/all.css">
+  <link rel="stylesheet" href="https://gsoc.avinal.space/theme/css/pygments/manni.min.css">
+  <link rel="stylesheet" href="https://gsoc.avinal.space/theme/css/theme.css">
+  <link rel="stylesheet" href="https://gsoc.avinal.space/theme/css/space.css">
+
+<link rel="alternate" type="application/atom+xml" title="Full Atom Feed" href="https://gsoc.avinal.space/feeds/all.atom.xml">
+<link rel="alternate" type="application/atom+xml" title="Categories Atom Feed"
+  href="https://gsoc.avinal.space/feeds/report.atom.xml">
+<meta name="description" content="This week I implemented CMake testing configuration and fixed most of the tests. As of now all but 5 tests are working fine.">
+
+
+</head>
+
+<body style="font-family:Overpass Mono,monospace;">
+  <header class="header star">
+    <div id='stars'></div>
+    <div id='stars2'></div>
+    <div id='stars3'></div>
+    <div class="container">
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="title" style="font-family: ExodarOut;font-weight: lighter;"><a href="https://gsoc.avinal.space/">New Buildsystem and CI/CD</a>
+    </h1>
+    <p class="text-muted">A GSoC project by Avinal Kumar</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="https://avinal.space" target="_blank">about me</a></li>
+      <li class="list-inline-item text-muted">|</li>
+      <li class="list-inline-item"><a href="https://gsoc.avinal.space/pages/project.html">Project</a></li>
+      <li class="list-inline-item text-muted">|</li>
+      <li class="list-inline-item"><a href="https://gsoc.avinal.space/pages/timeline.html">Timeline</a></li>
+      <li class=" list-inline-item text-muted">|</li>
+      <li class="list-inline-item"><a class="fab fa-google" href="https://summerofcode.withgoogle.com/projects/#4535841440923648" target="_blank"></a></li>
+      <li class="list-inline-item"><a class="fab fa-github" href="https://github.com/avinal/fossology/tree/avinal/feat/cmake-buildsystem" target="_blank"></a></li>
+      <li class="list-inline-item"><a class="fab fa-linkedin" href="https://www.linkedin.com/in/avinal/" target="_blank"></a></li>
+      <li class="list-inline-item"><a class="fa fa-envelope" href="mailto:blog@avinal.space" target="_blank"></a></li>
+    </ul>
+  </div>
+</div>    </div>
+  </header>
+
+  <div class="main">
+    <div class="container">
+      <h2 style="font-weight:600;">Coding Week 10 Meeting
+</h2>
+      <hr>
+<article class="article">
+  <header>
+    <ul class="list-inline">
+      <li class="list-inline-item text-muted" title="2021-08-14T22:47:00+05:30">
+        <i class="fas fa-clock"></i>
+        Sat 14 August 2021
+      </li>
+      <li class="list-inline-item">
+        <i class="fas fa-folder-open"></i>
+        <a href="https://gsoc.avinal.space/category/report.html">report</a>
+      </li>
+      <li class="list-inline-item">
+        <i class="fas fa-tag"></i>
+        <a href="https://gsoc.avinal.space/tag/gsoc.html">#gsoc</a>,         <a href="https://gsoc.avinal.space/tag/fossology.html">#FOSSology</a>      </li>
+    </ul>
+  </header>
+  <div class="content">
+    <div class="alert alert-info" role="alert">This week I implemented CMake testing configuration and fixed most of the tests. As of now all but 5 tests are working fine.</div><div class="section" id="attendees">
+<h2>Attendees</h2>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/mcjaeger">Michael C. Jaeger</a></li>
+<li><a class="reference external" href="https://github.com/ag4ums">Anupam Ghosh</a></li>
+<li><a class="reference external" href="https://github.com/avinal">Avinal Kumar</a></li>
+</ul>
+</div>
+<div class="section" id="week-9-progress">
+<h2>Week 9 Progress</h2>
+<div class="alert alert-success" role="alert">
+<ul><li>Testing configuration for all agents added</li>
+<li>GitHub Actions Configuration added</li>
+<li>Fixed and refactored most of the tests</li>
+<li>Raised a pull request for all the works till now. <a href="https://github.com/fossology/fossology/pull/2075">#2075</a></li>
+<li>To test the current progress, follow the instructions <a href="https://github.com/avinal/FOSSology/wiki#test-the-new-system-only-gcc-with-make-and-ninja-tested-for-now">here</a></li>
+</ul>
+</div></div>
+<div class="section" id="discussions">
+<h2>Discussions</h2>
+<ul class="simple">
+<li><strong>I suspect that the Ojo regression test's expected data file is outdated</strong><ul>
+<li>Michael said that on their internal Jenkins CI, these tests are not being run currently, so this might be possible that the file is outdated.</li>
+</ul>
+</li>
+<li><strong>Since some of the tests need Makefile to install while testing, CMake generated Makefiles and test Makefiles are conflicting, and hence we are forced to use Ninja for testing. What can I do about it?</strong><ul>
+<li>Michael suggested using <code>--file=filename</code> flag with the make command and change the name of the test Makefile to something else. This will solve the problem.</li>
+</ul>
+</li>
+<li><strong>Mimetype is detecting executables as shared lib, is that expected or needs to be fixed?</strong><ul>
+<li>Mimetype internally depends on the <em>file</em> command to get the mime-type. If the output of the <em>file</em> command is also the same then it is okay.</li>
+</ul>
+</li>
+<li><strong>What is</strong> <code>folderlist</code> <strong>in https://github.com/fossology/fossology/blob/master/src/delagent/agent_tests/Functional/ft_cliDelagentTest.php#L126 ?</strong><ul>
+<li><code>folderlist</code> is a view. Use <code>createViews()</code> function.</li>
+</ul>
+</li>
+<li><strong>Suggestions/Changes from Gaurav for fixing phpunit tests.</strong><ul>
+<li>Please note the changes in <code>setUp()</code> function in <code>src/lib/php/tests/test_common_license_file.php</code></li>
+<li>The test database name is given to the constructor of TestPgDb and can be anything as it gets deleted in <code>teardown()</code></li>
+<li>The <code>dbmanager</code> is provided by the object, no need to initialize global <code>PG_CONN</code> (it will be exposed by the library in case some of the functions need it).</li>
+<li>All the tables needs to be explicitly mentioned to <code>createPlainTables()</code> and their corresponding <code>createSequences()</code> (you can get them using <code>\d tablename</code> from existing DB easily. Then call the <code>alterTables()</code> to update the sequence. (I am not sure if <code>createConstraints()</code> is required at all, try to remove)</li>
+<li><code>tearDown()</code> is pretty easy, just need to call <code>fullDestruct()</code>. For debugging, you can add <code>exit(-1);</code> after any line you as suspecting, connect to DB and checkout the database, select/inspect tables.</li>
+<li>There is also <code>TestInstaller</code> class in case any of test case needs the whole mods-enabled with fossology.conf, VERSION, etc. Please check <code>src/cli/tests/test_fo_copyright_list.php</code> for quick reference.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="conclusion-and-further-plans">
+<h2>Conclusion and Further Plans</h2>
+<ul class="simple">
+<li>Fix the remaining tests.</li>
+<li>Add week 8, 9 reports.</li>
+<li>Add Final Evaluation Report.</li>
+<li>Complete Final Evaluation.</li>
+</ul>
+</div>
+
+    <hr>
+    <p align=center>
+      This Blog is licensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/?ref=chooser-v1"
+        target="_blank" rel="license noopener noreferrer">Attribution-NonCommercial 4.0 International<img
+          style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+          src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img
+          style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+          src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img
+          style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+          src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1">
+      </a>
+    </p>
+  </div>
+</article>
+<div id="comment-form">
+  <div class="alert alert-info" role="alert">
+    Feel free to leave a feedback or questions !
+  </div>
+  <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfL9T8WBRm-Ac2uyu74lJXSYOqAuF6lLIUAulRArCsuiI1ZRQ/formResponse" target="response" method="POST" id="valid-form">
+    <div class="form-row align-items-center">
+      <div class="form-group col-md-5">
+        <label class="sr-only" for="person-name">Name</label>
+        <input type="text" class="form-control form-control-sm" id="person-name" placeholder="Your Name (Optional)"
+          aria-describedby="nameHelp" name="entry.982725972">
+        <input type="text" id="page-link" name="entry.1641222305" hidden>
+        <small id="nameHelp" class="form-text text-muted">You may put your GitHub Username.</small>
+      </div>
+      <div class="form-group col-md-7">
+        <label class="sr-only" for="email-address">Email address</label>
+        <input type="email" class="form-control form-control-sm" id="email-address" aria-describedby="emailHelp"
+          placeholder="Your Email Address (Optional)" name="entry.1652853191">
+        <small id="emailHelp" class="form-text text-muted">I'll never share your email with anyone
+          else.</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="sr-only" for="comment-section">Your Message</label>
+      <textarea class="form-control form-control-sm" id="comment-section" rows="3"
+        placeholder="Please enter your message or feedback. (Required)" aria-describedby="emailHelp"
+        name="entry.1062656232" required></textarea>
+      <div class="invalid-feedback">
+        Please Enter something !
+      </div>
+      <small id="textHelp" class="form-text text-muted">Enter upto 200 characters.</small>
+    </div>
+    <button class="btn btn-outline-info" type="submit">Send</button>
+  </form>
+  <iframe name="response" hidden></iframe>
+</div>
+<div class="alert alert-info" role="alert" id="comment-message" style="display: none;">
+  <h4 class="alert-heading">Thanks You 🥳</h4>
+  <p>Thanks a lot for reading this blog and sending me a feedback. I hope you liked it. I will get back to you
+    soon if you have added an email.</p>
+</div>
+<script>
+  (function () {
+    'use strict';
+    window.addEventListener('load', function () {
+      var form = document.getElementById('valid-form');
+      form.addEventListener('submit', function (event) {
+        document.getElementById('page-link').value = window.location.href;
+        document.getElementById('comment-form').style.display = 'none';
+        document.getElementById('comment-message').style.display = '';
+      }, false);
+    }, false);
+  })();
+</script>
+    </div>
+  </div>
+
+  <footer class="footer star">
+    <div id='stars'></div>
+    <div id='stars2'></div>
+    <div id='stars3'></div>
+    <div class="container">
+<div class="row">
+  <ul class="col-sm-6 list-inline">
+    <li class="list-inline-item"><a
+        href="https://gsoc.avinal.space/archives.html">Archives</a></li>
+    <li class="list-inline-item"><a
+        href="https://gsoc.avinal.space/categories.html">Categories</a></li>
+    <li class="list-inline-item"><a href="https://gsoc.avinal.space/tags.html">Tags</a></li>
+  </ul>
+  <p class="col-sm-6 text-sm-right text-muted">
+    <a href="https://github.com/avinal" target="_blank">
+      <img src="/images/gsoc-fossology.gif" class="img-fluid" style="max-width: 40%;">
+    </a>
+  </p>
+</div>    </div>
+  </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,861 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Final Evaluation Report | New Buildsystem and CI/CD
+</title>
+  <link rel="canonical" href="https://gsoc.avinal.space/posts/report/final-evaluation.html">
+
+  <link rel="apple-touch-icon" href="https://gsoc.avinal.space/apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" type="image/png" href="https://gsoc.avinal.space/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="https://gsoc.avinal.space/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="https://gsoc.avinal.space/site.webmanifest">
+  <meta name="theme-color" content="#333333">
+
+  <link rel="stylesheet" href="https://gsoc.avinal.space/theme/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://gsoc.avinal.space/theme/css/all.css">
+  <link rel="stylesheet" href="https://gsoc.avinal.space/theme/css/pygments/manni.min.css">
+  <link rel="stylesheet" href="https://gsoc.avinal.space/theme/css/theme.css">
+  <link rel="stylesheet" href="https://gsoc.avinal.space/theme/css/space.css">
+
+<link rel="alternate" type="application/atom+xml" title="Full Atom Feed" href="https://gsoc.avinal.space/feeds/all.atom.xml">
+<link rel="alternate" type="application/atom+xml" title="Categories Atom Feed"
+  href="https://gsoc.avinal.space/feeds/report.atom.xml">
+<meta name="description" content="In the second phase of GSoC 2021 @ The FOSSology Project, I worked on testing and packaging configuration. I also migrated the CI services from Travis CI to GitHub Actions.">
+
+
+</head>
+
+<body style="font-family:Overpass Mono,monospace;">
+  <header class="header star">
+    <div id='stars'></div>
+    <div id='stars2'></div>
+    <div id='stars3'></div>
+    <div class="container">
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="title" style="font-family: ExodarOut;font-weight: lighter;"><a href="https://gsoc.avinal.space/">New Buildsystem and CI/CD</a>
+    </h1>
+    <p class="text-muted">A GSoC project by Avinal Kumar</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="https://avinal.space" target="_blank">about me</a></li>
+      <li class="list-inline-item text-muted">|</li>
+      <li class="list-inline-item"><a href="https://gsoc.avinal.space/pages/project.html">Project</a></li>
+      <li class="list-inline-item text-muted">|</li>
+      <li class="list-inline-item"><a href="https://gsoc.avinal.space/pages/timeline.html">Timeline</a></li>
+      <li class=" list-inline-item text-muted">|</li>
+      <li class="list-inline-item"><a class="fab fa-google" href="https://summerofcode.withgoogle.com/projects/#4535841440923648" target="_blank"></a></li>
+      <li class="list-inline-item"><a class="fab fa-github" href="https://github.com/avinal/fossology/tree/avinal/feat/cmake-buildsystem" target="_blank"></a></li>
+      <li class="list-inline-item"><a class="fab fa-linkedin" href="https://www.linkedin.com/in/avinal/" target="_blank"></a></li>
+      <li class="list-inline-item"><a class="fa fa-envelope" href="mailto:blog@avinal.space" target="_blank"></a></li>
+    </ul>
+  </div>
+</div>    </div>
+  </header>
+
+  <div class="main">
+    <div class="container">
+      <h2 style="font-weight:600;">Final Evaluation Report
+</h2>
+      <hr>
+<article class="article">
+  <header>
+    <ul class="list-inline">
+      <li class="list-inline-item text-muted" title="2021-08-19T23:07:00+05:30">
+        <i class="fas fa-clock"></i>
+        Thu 19 August 2021
+      </li>
+      <li class="list-inline-item">
+        <i class="fas fa-folder-open"></i>
+        <a href="https://gsoc.avinal.space/category/report.html">report</a>
+      </li>
+      <li class="list-inline-item">
+        <i class="fas fa-tag"></i>
+        <a href="https://gsoc.avinal.space/tag/gsoc.html">#gsoc</a>,         <a href="https://gsoc.avinal.space/tag/fossology.html">#FOSSology</a>      </li>
+    </ul>
+  </header>
+  <div class="content">
+    <style>
+.rd {color:red;font-weight:bold}
+.gr{color:green;font-weight:bold}
+.or{color:orange;font-weight:medium}
+ul{margin-bottom:0}
+</style><div class="section" id="the-cmake-build-system">
+<h2>The CMake Build system</h2>
+<p>FOSSology is quite an old and mature project. The project has been using bare metal <strong>Makefiles</strong>. As the project is growing with new agents and modernization it was required to have a modern build system.</p>
+<p>The FOSSology is a suite of well-integrated and synchronized sub-projects (called agents) written in C, C++, and PHP. Most of the major agents are in C, C++ and that made CMake an obvious choice for a new build system for FOSSology. CMake is a versatile set of build, test, and packaging tools and is the most popular choice of C/C++ developers. CMake can be extended to create a build system for other languages too via custom scripts.</p>
+</div>
+<div class="section" id="github-actions-ci-cd">
+<h2>GitHub Actions CI/CD</h2>
+<img alt="A CI Meme" class="float-md-right rounded border border-info ml-3" src="/images/ci.png" style="width: 350px;" />
+<p>Since the FOSSology project moved on Github, it has used only the free Travis CI service for OSS projects.
+At the time of writing the Travis CI has reduced its free tier CI services. GitHub Actions provides faster builds. Since GitHub Actions is a fully managed service by GitHub, we don’t need to know how to scale and operate the infrastructure to run it.</p>
+<p>It is straightforward to use with GitHub because when we fork a repository, the actions automatically get forked. This allows you to test and build projects very efficiently and even run them closer to the developer. Also, you have readily available access to the GitHub API, making it more popular among developers.</p>
+</div>
+<div class="section" id="improvements-over-previous-build-system-and-ci">
+<h2>Improvements over previous build system and CI</h2>
+<p>The new build system and CI brings a lot of improvements and features. The list below describes them.</p>
+<ul class="simple">
+<li>CMake enforces out-of-source builds. This was already possible with the previous build system but not a strict requirement. This feature keeps the source code clean and makes cleaning the build artifacts easy. (Just remove the build folder :)</li>
+<li>One of the major improvements over the previous build system is faster build times. CMake generates parallel build-enabled configurations for all generators. In our tests, the new build system is at least twice as fast as the previous one. With further improvement in configuration, we will be able to further cut the build times.</li>
+<li>Previously FOSSology can only be built using <em>Unix Makefiles</em>. With CMake, we can now use many other popular generators such as <em>Ninja</em>.</li>
+<li>Now it is also very flexible to choose different compilers. This will help support more platforms and architecture in the future. As of now, we are experimenting with Clang compilers.</li>
+<li>FOSSology is quite an old project and a lot of agent testing code was written in the last decade. Initially, none of them were compatible with the new build system, but we were able to hack most of the test code using better-improved methods. Test times have also improved.</li>
+<li>Migrating from Travis CI to GitHub Actions was another big move and for the most part, it removes the dependency on a third-party CI service. Along with that GitHub Actions provides better build times, tons of new features, and better integration with other GitHub services.</li>
+</ul>
+</div>
+<div class="section" id="deliverables">
+<h2>Deliverables</h2>
+<div class="alert alert-info" role="alert">
+<ul class="simple">
+<li>Final Pull Request <a class="badge badge-info" href="https://github.com/fossology/fossology/pull/2075">#2075</a></li>
+<li>Pull Request Branch <a class="badge badge-info" href="https://github.com/avinal/fossology/tree/avinal/feat/buildsystem">avinal/feat/buildsystem</a></li>
+<li>Working Branch (individual commits) <ul>
+<li><a class="badge badge-info" href="https://github.com/avinal/fossology/tree/avinal/feat/cmake-buildsystem">avinal/feat/cmake-buildsystem</a></li>
+<li><a class="badge badge-info" href="https://github.com/avinal/fossology/tree/avinal/feat/testing">avinal/feat/testing</a></li>
+</ul></li>
+<li>Project Issue <a class="badge badge-info" href="https://github.com/fossology/fossology/issues/1913">#1913</a></li>
+<li>Project Discussion <a class="badge badge-info" href="https://github.com/fossology/fossology/discussions/1931">#1931</a></li>
+<li>Weekly Reports<ul>
+<li><a class="badge badge-info" href="https://gsoc.avinal.space">Personal Blog</a></li>
+<li><a class="badge badge-info" href="https://fossology.github.io/gsoc/docs/2021/buildsystem/">FOSSology Official Blog</a></li>
+</ul></li></ul>
+</div><p><strong>CMake Build System Tasks</strong></p>
+<table border="1" class="table table-sm table-hover table-bordered table-responsive docutils align-center">
+<colgroup>
+<col width="5%" />
+<col width="15%" />
+<col width="10%" />
+<col width="10%" />
+<col width="20%" />
+<col width="15%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">#</th>
+<th class="head">Agents</th>
+<th class="head">Build</th>
+<th class="head">Install</th>
+<th class="head">Testing</th>
+<th class="head">Packaging</th>
+<th class="head">Remarks</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>1</td>
+<td>adj2nest</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>2</td>
+<td>buckets</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>3</td>
+<td>cli</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td><ul class="first last simple">
+<li><span class="rd">Functional</span></li>
+</ul>
+</td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>4</td>
+<td>copyright</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td><ul class="first last simple">
+<li><span class="gr">Functional</span></li>
+<li><span class="gr">Unit</span></li>
+</ul>
+</td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>5</td>
+<td>debug</td>
+<td>&nbsp;</td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>6</td>
+<td>decider</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td><ul class="first last simple">
+<li><span class="gr">Functional</span></li>
+<li><span class="gr">Unit</span></li>
+</ul>
+</td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>7</td>
+<td>deciderjob</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td><ul class="first last simple">
+<li><span class="gr">Functional</span></li>
+</ul>
+</td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>8</td>
+<td>delagent</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td><ul class="first last simple">
+<li><span class="rd">Functional</span></li>
+<li><span class="rd">Unit</span></li>
+</ul>
+</td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>9</td>
+<td>demomod</td>
+<td><span class="or">YES</span></td>
+<td><span class="or">YES</span></td>
+<td><ul class="first last simple">
+<li><span class="or">Functional</span></li>
+<li><span class="or">Unit</span></li>
+</ul>
+</td>
+<td><span class="or">NO</span></td>
+<td><em>(Not Used)</em></td>
+</tr>
+<tr><td>10</td>
+<td>example_wc_agent</td>
+<td><span class="or">YES</span></td>
+<td><span class="or">YES</span></td>
+<td><ul class="first last simple">
+<li><span class="or">Functional</span></li>
+<li><span class="or">Unit</span></li>
+</ul>
+</td>
+<td><span class="or">NO</span></td>
+<td><em>(Not Used)</em></td>
+</tr>
+<tr><td>11</td>
+<td>clib</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td><ul class="first last simple">
+<li><span class="gr">Functional</span></li>
+<li><span class="gr">Unit</span></li>
+</ul>
+</td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>12</td>
+<td>cpplib</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td><ul class="first last simple">
+<li><span class="gr">Unit</span></li>
+</ul>
+</td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>13</td>
+<td>phplib</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td><ul class="first last simple">
+<li><span class="gr">Functional</span></li>
+<li><span class="gr">Unit</span></li>
+</ul>
+</td>
+<td><span class="gr">YES</span></td>
+<td>1 functional
+test needs fix</td>
+</tr>
+<tr><td>14</td>
+<td>maintagent</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>15</td>
+<td>mimetype</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td><ul class="first last simple">
+<li><span class="gr">Functional</span></li>
+<li><span class="gr">Unit</span></li>
+</ul>
+</td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>16</td>
+<td>monk</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td><ul class="first last simple">
+<li><span class="gr">Functional</span></li>
+<li><span class="gr">Unit</span></li>
+</ul>
+</td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>17</td>
+<td>ninka</td>
+<td><span class="or">YES</span></td>
+<td><span class="or">YES</span></td>
+<td><ul class="first last simple">
+<li><span class="or">Functional</span></li>
+<li><span class="or">Unit</span></li>
+</ul>
+</td>
+<td><span class="or">NO</span></td>
+<td><em>(Deprecated)</em></td>
+</tr>
+<tr><td>18</td>
+<td>nomos</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td><ul class="first last simple">
+<li><span class="gr">Functional</span></li>
+<li><span class="gr">Unit</span></li>
+</ul>
+</td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>19</td>
+<td>ojo</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td><ul class="first last simple">
+<li><span class="gr">Functional</span></li>
+<li><span class="gr">Unit</span></li>
+</ul>
+</td>
+<td><span class="gr">YES</span></td>
+<td>1 functional
+test needs fix</td>
+</tr>
+<tr><td>20</td>
+<td>pkgagent</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td><ul class="first last simple">
+<li><span class="gr">Functional</span></li>
+<li><span class="gr">Unit</span></li>
+</ul>
+</td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>21</td>
+<td>readmeoss</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>22</td>
+<td>regexscan</td>
+<td><span class="or">YES</span></td>
+<td><span class="or">YES</span></td>
+<td>&nbsp;</td>
+<td><span class="or">NO</span></td>
+<td><em>(Deprecated)</em></td>
+</tr>
+<tr><td>23</td>
+<td>reportImport</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>24</td>
+<td>reuser</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td><ul class="first last simple">
+<li><span class="gr">Functional</span></li>
+</ul>
+</td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>25</td>
+<td>reso</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>26</td>
+<td>scheduler</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td><ul class="first last simple">
+<li><span class="rd">Functional</span></li>
+<li><span class="rd">Unit</span></li>
+</ul>
+</td>
+<td><span class="gr">YES</span></td>
+<td>Tests needs
+fix</td>
+</tr>
+<tr><td>27</td>
+<td>softwareHeritage</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>28</td>
+<td>spasht</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>29</td>
+<td>spdx2</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td><ul class="first last simple">
+<li><span class="gr">Functional</span></li>
+<li><span class="gr">Unit</span></li>
+</ul>
+</td>
+<td><span class="gr">YES</span></td>
+<td>1 Test failing
+in CI</td>
+</tr>
+<tr><td>30</td>
+<td>unifiedreport</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td><ul class="first last simple">
+<li><span class="gr">Functional</span></li>
+</ul>
+</td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>31</td>
+<td>ununpack</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td><ul class="first last simple">
+<li><span class="gr">Functional</span></li>
+<li><span class="rd">Unit</span></li>
+</ul>
+</td>
+<td><span class="gr">YES</span></td>
+<td>Unit tests
+needs fix</td>
+</tr>
+<tr><td>32</td>
+<td>wget_agent</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td><ul class="first last simple">
+<li><span class="gr">Functional</span></li>
+<li><span class="gr">Unit</span></li>
+</ul>
+</td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>32</td>
+<td>www</td>
+<td><span class="gr">YES</span></td>
+<td><span class="gr">YES</span></td>
+<td><ul class="first last simple">
+<li><span class="rd">UI</span></li>
+</ul>
+</td>
+<td><span class="gr">YES</span></td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p><strong>GitHub Actions CI Tasks</strong></p>
+<table border="1" class="table table-sm table-hover table-bordered table-responsive docutils align-center">
+<colgroup>
+<col width="5%" />
+<col width="25%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">#</th>
+<th class="head">CI Tasks</th>
+<th class="head">Status</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>1</td>
+<td><span class="gr">build</span></td>
+<td>Added Ubuntu 20.04 GCC 8, 9 and Clang, GCC 7 not working</td>
+</tr>
+<tr><td>2</td>
+<td><span class="gr">c/cpp unit test</span></td>
+<td>Added, delagent, scheduler and ununpack not working</td>
+</tr>
+<tr><td>3</td>
+<td><span class="gr">phpunit tests</span></td>
+<td>Added, delagent and scheduler  functional not working</td>
+</tr>
+<tr><td>4</td>
+<td><span class="rd">cahching</span></td>
+<td>Not implemented</td>
+</tr>
+<tr><td>5</td>
+<td><span class="rd">source install</span></td>
+<td>Not implemented</td>
+</tr>
+</tbody>
+</table>
+<p>(<span class="gr">GREEN</span>: COMPLETED, <span class="rd">RED</span>: INCOMPLETE, <span class="or">ORANGE</span>: NOT NEEDED/DEPRECATED)</p>
+</div>
+<div class="section" id="how-it-works-and-how-to-use-it">
+<h2>How it works and how to use it?</h2>
+<div class="embed-responsive embed-responsive-16by9">
+    <iframe class="embed-responsive-item" src="/images/second-build.webm" allowfullscreen></iframe>
+</div><p>The new build system retains the modular and hierarchical structure of the previous build system.  On the other hand, the new build system provides several new flags to control the build. The new build system forces out-of-source build instead of the previous in-source builds. This keeps the source clutter-free and reduces the chance of accidentally deleting source files. <em>Testing still needs some in-source artifacts, this will be solved once all the tests are fixed according to the new build system.</em></p>
+<p>Each agent is a complete CMake sub-project with its independent configuration for building, installing, and testing. That means a single agent can be built and installed separately and even removed from the default build without breaking other builds. The directory structure is as below.</p>
+<div class="highlight"><pre><span></span>.
+├──<span class="w"> </span>build<span class="w">                           </span><span class="c1"># temporary directory for build artifacts</span>
+├──<span class="w"> </span>cmake<span class="w">                           </span><span class="c1"># CMake modules for FOSSology</span>
+│<span class="w">   </span>├──<span class="w"> </span>FoPackaging.cmake<span class="w">           </span><span class="c1"># CMake Packaging configurations</span>
+│<span class="w">   </span>├──<span class="w"> </span>FoUtilities.cmake<span class="w">           </span><span class="c1"># Custom CMake utilities</span>
+│<span class="w">   </span>├──<span class="w"> </span>FoVersionFile.cmake<span class="w">         </span><span class="c1"># VERSION version.php CMake template file</span>
+│<span class="w">   </span>├──<span class="w"> </span>SetDefaults.cmake<span class="w">           </span><span class="c1"># CMake defaults for this project</span>
+│<span class="w">   </span>├──<span class="w"> </span>TestInstall.make.in<span class="w">         </span><span class="c1"># Template makefile for install during tests</span>
+│<span class="w">   </span>└──<span class="w"> </span>VERSION.in<span class="w">                  </span><span class="c1"># VERSION file template</span>
+├──<span class="w"> </span>src
+│<span class="w">   </span>├──<span class="w"> </span>agent-1<span class="w">                     </span><span class="c1"># Agent sub-project</span>
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>agent<span class="w">                   </span><span class="c1"># Agent&#39;s source code directory</span>
+│<span class="w">   </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>agent-source-code
+│<span class="w">   </span>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>CMakeLists.txt
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>agent_tests<span class="w">             </span><span class="c1"># Agent&#39;s test directory</span>
+│<span class="w">   </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>Unit
+│<span class="w">   </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>Functional
+│<span class="w">   </span>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>CMakeLists.txt
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>ui<span class="w">                      </span><span class="c1"># Agent&#39;s UI source code</span>
+│<span class="w">   </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>templates
+│<span class="w">   </span>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>agent-ui-code
+│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>CMakeLists.txt<span class="w">          </span><span class="c1"># Agent&#39;s top-level CMake configuration</span>
+:<span class="w">   </span>:
+│<span class="w">   </span>├──<span class="w"> </span>other<span class="w"> </span>agents
+:<span class="w">   </span>:
+│<span class="w">   </span>└──<span class="w"> </span>CMakeLists.txt<span class="w">              </span><span class="c1"># Source intermediate CMake configuration</span>
+:
+├──<span class="w"> </span>other<span class="w"> </span>directories<span class="w"> </span>and<span class="w"> </span>files
+:
+└──<span class="w"> </span>CMakeLists.txt<span class="w">                  </span><span class="c1"># FOSSology Top-level CMake configuration</span>
+</pre></div>
+<p>The <code>cmake</code> directory contains customized CMake modules and templates for FOSSology. This directory is required for all the operations. The general workflow of the new build system as well as how to use it as described below.</p>
+<ol class="arabic">
+<li><p class="first">Since the new build system is still in review. You must fork FOSSology and pull the <a class="reference external" href="https://github.com/fossology/fossology/pull/2075">#2075</a> pull request branch. Once you are in FOSSology root, run these commands.</p>
+<blockquote>
+<div class="highlight"><pre><span></span>git<span class="w"> </span>fetch<span class="w"> </span>https://github.com/avinal/fossology<span class="w"> </span>avinal/feat/buildsystem:buildsystem
+git<span class="w"> </span>checkout<span class="w"> </span>buildsystem
+</pre></div>
+</blockquote>
+</li>
+<li><p class="first">The first step towards building is to create a temporary directory for storing intermediate files and build artifacts. By convention we use a directory named <code>build</code>, but you can use any name. (<strong>NOTE: For testing do not use other names</strong>)</p>
+<blockquote>
+<div class="highlight"><pre><span></span>mkdir<span class="w"> </span>build
+<span class="nb">cd</span><span class="w"> </span>build
+</pre></div>
+</blockquote>
+</li>
+<li><p class="first">In the next steps, we will configure the CMake project and generate the required configurations. You can use several flags to control the build. Given below are the flags available for this project.</p>
+<blockquote>
+<table border="1" class="table table-sm table-hover table-bordered table-responsive docutils">
+<colgroup>
+<col width="35%" />
+<col width="44%" />
+<col width="20%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">CMake Flags</th>
+<th class="head">Description</th>
+<th class="head">Default</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><strong>-DCMAKE_INSTALL_PREFIX=&lt;path&gt;</strong></td>
+<td>Sets the install prefix.</td>
+<td><code>/usr/local</code></td>
+</tr>
+<tr><td><strong>-DAGENTS=&quot;agent1;agent2...&quot;</strong></td>
+<td>Only configure these agents.</td>
+<td>ALL AGENTS</td>
+</tr>
+<tr><td><strong>-DOFFLINE=&lt;ON/OFF&gt;</strong></td>
+<td>Controls vendor generation, ON=NO</td>
+<td><strong>OFF</strong></td>
+</tr>
+<tr><td><p class="first"><strong>-DCMAKE_BUILD_TYPE=&lt;type&gt;</strong></p>
+<blockquote class="last">
+<ul class="simple">
+<li>Controls build type aka
+level optimisation</li>
+</ul>
+</blockquote>
+</td>
+<td><ul class="first last simple">
+<li><code>Debug</code></li>
+<li><code>Release</code></li>
+<li><code>RelWithDebInfo</code></li>
+<li><code>MinSizeRel</code></li>
+</ul>
+</td>
+<td><code>Debug</code></td>
+</tr>
+<tr><td><strong>-DTESTING=&lt;ON/OFF&gt;</strong></td>
+<td>Controls testing config generation</td>
+<td><strong>OFF</strong></td>
+</tr>
+<tr><td><strong>-DMONOPACK=&lt;ON/OFF&gt;</strong></td>
+<td>Package adj2nest and ununpack seperately</td>
+<td><strong>OFF</strong></td>
+</tr>
+<tr><td><strong>-GNinja</strong></td>
+<td>Use Ninja instead of Unix Makefiles</td>
+<td><em>Unix MakeFiles</em></td>
+</tr>
+</tbody>
+</table>
+<p>There are lots of inbuilt CMake command-line options you can see them in the official <a class="reference external" href="https://cmake.org/cmake/help/v3.10/manual/cmake.1.html">documentation</a>. Once you have chosen your flags we can now configure the project using the following commands.</p>
+<div class="highlight"><pre><span></span><span class="c1"># From build folder</span>
+<span class="nb">cd</span><span class="w"> </span>&lt;name-of-build-directory&gt;
+cmake<span class="w"> </span>&lt;flags&gt;<span class="w"> </span>..
+</pre></div>
+</blockquote>
+</li>
+<li><p class="first">The next step is to build the project. You can use parallel jobs to build faster. For more options you can type <code>cmake --help</code> or <code>make --help</code> or <code>ninja --help</code>.</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="c1"># Common build command for all generators,</span>
+<span class="c1"># Default number of parallel builds depends on generator used</span>
+cmake<span class="w"> </span>--build<span class="w"> </span>.<span class="w"> </span>--parallel<span class="w"> </span>&lt;no-of-processes&gt;
+
+<span class="c1"># For Unix Makefiles, no parallel build by default</span>
+make<span class="w"> </span>-j<span class="w"> </span>&lt;no-of-processes&gt;
+
+<span class="c1"># For Ninja, 8+ parallel build by default (depends on system)</span>
+ninja<span class="w"> </span>-j<span class="w"> </span>&lt;no-of-processes&gt;
+</pre></div>
+</blockquote>
+</li>
+<li><p class="first">Installing is also as easy as building. You can choose to install only certain components even if you have built the whole project. If you directly invoke the install command without building the project, it will automatically build the project first.</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="c1"># For Unix Makefiles</span>
+make<span class="w"> </span>install
+
+<span class="c1"># For Ninja</span>
+ninja<span class="w"> </span>install
+</pre></div>
+</blockquote>
+</li>
+<li><p class="first">While testing has some issues, but most of the testing is working fine. For now, you must build and run any test from the FOSSology root directory only. You can choose to configure a single agent if you want to test one agent only. See <code>ctest --help</code> for controlling test runs.</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="c1"># Common testing command</span>
+ctest<span class="w"> </span>--parallel<span class="w"> </span>&lt;no-of-processes&gt;
+
+<span class="c1"># For Unix Makefiles</span>
+make<span class="w"> </span><span class="nb">test</span>
+
+<span class="c1"># For Ninja</span>
+ninja<span class="w"> </span><span class="nb">test</span>
+</pre></div>
+</blockquote>
+</li>
+<li><p class="first">You can package FOSSology, the packaging currently lacks copyright and conf files. But for testing purposes, you can use the following commands. Similar to installing, if you run the package command without building the project, it will automatically build the project first. See <code>cpack --help</code> for more packaging options.</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="c1"># Common testing command</span>
+cpack
+
+<span class="c1"># For Unix Makefiles</span>
+make<span class="w"> </span>package
+
+<span class="c1"># For Ninja</span>
+ninja<span class="w"> </span>package
+</pre></div>
+</blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="known-issues-and-drawbacks">
+<h2>Known Issues and Drawbacks</h2>
+<p>Although the transition from Makefiles to CMake and Travis CI to GitHub Actions is almost complete and working as expected. But it is not free of drawbacks and issues. This section outlines the known issues at the time of writing.</p>
+<img alt="A Bug Meme" class="float-md-right rounded border border-info ml-3" src="https://imgs.xkcd.com/comics/conference_question.png" style="width: 350px;" />
+<ul class="simple">
+<li>Coverage builds may fail with linking errors.</li>
+<li>Packaging prefix is the same as the install prefix. This requires the developer to set the install prefix manually before packaging to produce packages with the correct directory structure.</li>
+<li>Testing and packaging must be used from the FOSSology root directory. Not doing so may or may not configure the project as intended.</li>
+<li>Previously tests were written hardcoded for the Makefiles. But new build system requires all artifacts to be generated in a separate directory. This required me to add symbolic links wherever a generated script or file is expected. Tests can still leave some artifacts inside source folders.</li>
+<li>There is no easy way to install a particular agent from the FOSSology root directory.</li>
+<li>Packages don't contain copyright, readme, and license files. CMake doesn't provide a way to include these files. This is being tracked by issue <a class="reference external" href="https://gitlab.kitware.com/cmake/cmake/-/issues/21832">#21832</a>.</li>
+<li>While packaging the symbolic links may or may not be dereferenced and hence results in copying the folder too in the target directory.</li>
+<li>Running tests locally may require switching to <code>fossy</code> user.</li>
+<li>While configured for testing, it may give permission errors.</li>
+<li>Scheduler, Ununpack, and Delagent unit and functional tests are not working. I have added an issue <a class="reference external" href="https://github.com/fossology/fossology/issues/2084">#2084</a> to track the progress on fixing these tests.</li>
+<li>CMake doesn't generates uninstall targets. The closest thing to uninstall is <a class="reference external" href="https://gitlab.kitware.com/cmake/community/-/wikis/FAQ#can-i-do-make-uninstall-with-cmake">this snippet</a>. This will be later added to the FOSSology.</li>
+</ul>
+</div>
+<div class="section" id="challenges-faced">
+<h2>Challenges Faced</h2>
+<p>While this whole project was challenging, some aspects of it were unforeseen and more challenging. When I decided to go on with this project I just had enough CMake knowledge to write a configuration for a very small project. I had never used CMake on this big scale. On the other side, the FOSSology community is largely unknown to CMake so for all of us it was learn, practice, and implement. With support from mentors, I was able to overcome this challenge with flying colors.</p>
+<p>The other challenge was to understand the old build system, how they are all connected and what is the flow. The complexity can be imagined by the fact that the most of code and configurations were written in the decade before the last decade and haven't changed much since then.</p>
+<p>The most challenging task was to make tests work with the new build system. Since tests were mostly hardcoded and the new build system refactored many of the files and directory, the tests were failing initially. The testing part took me the most time. All thanks to my mentor Gaurav I was able to hack them to suit the new build system.</p>
+</div>
+<div class="section" id="related-resources-and-links">
+<h2>Related Resources and Links</h2>
+<ul class="simple">
+<li>Fix FOSSology agent tests issue <a class="reference external" href="https://github.com/fossology/fossology/issues/2084">#2084</a></li>
+<li>feat(CI): Migrate API docs generation and deployment to GitHub Actions pull request <a class="reference external" href="https://github.com/fossology/fossology/pull/1917">#1917</a></li>
+<li>feat(CI): Migrate Static Checks and Analysis to GitHub Actions from Travis CI <a class="reference external" href="https://github.com/fossology/fossology/pull/1919">#1919</a></li>
+</ul>
+</div>
+<div class="section" id="future-development-plans">
+<h2>Future Development Plans</h2>
+<p>There is a lot to do with the new build system and CI and it will probably take a year or to reach a maturity point. I was able to meet most of the goals but some of them are remaining.</p>
+<ul class="simple">
+<li>Fix the tests, probably renovate them from the ground up.</li>
+<li>Find a hack for packaging problems.</li>
+<li>Improve and optimize the build.</li>
+<li>Modernise the source code, remove old, bloated code and replace them according to new standards.</li>
+</ul>
+</div>
+<div class="section" id="what-did-i-learn-from-this-project">
+<h2>What did I learn from this project?</h2>
+<p>This Google Summer of Code was the busiest time of my life for all good reasons. I learned a lot about license compliance and how it all works in the software industry. The next big thing is CMake. As I mentioned I was just a novice user of CMake. Now I am confident that given any other large project I will be able to migrate it/improve it. I got to learn PHP, of which I did not know a single word before GSoC. And finally, I learned about packing and testing. I had these courses but implementing them myself and fixing them was a wholesome experience.</p>
+<p>Other than that I improved on my communication and presentation skills. Collaborating with fellow participants was one of the great things that happened during GSoC.</p>
+</div>
+<div class="section" id="acknowledgments">
+<h2>Acknowledgments</h2>
+<p>Google Summer of Code is the best thing that has happened to me this year so far. Although there are numerous people to say thanks to, I want to mention key people who were my motivation and support during this period.</p>
+<p>First of all, I want to thank and appreciate my mentors <a class="reference external" href="https://github.com/GMishx">Gaurav Mishra</a>, <a class="reference external" href="https://github.com/mcjaeger">Michael C. Jaeger</a>, <a class="reference external" href="https://github.com/ag4ums">Anupam Ghosh</a>, and <a class="reference external" href="https://github.com/shaheemazmalmmd">Shaheem Azmal M MD</a>. Without the help and support from them, all this would not have been possible. They are very polite, knowledgeable, and helpful.</p>
+<p>Finally, I want to thanks, my family and friends. I got to meet many awesome developers as my fellow participants from around the world, I wish we will do more collaboration in the future.</p>
+</div>
+
+    <hr>
+    <p align=center>
+      This Blog is licensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/?ref=chooser-v1"
+        target="_blank" rel="license noopener noreferrer">Attribution-NonCommercial 4.0 International<img
+          style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+          src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img
+          style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+          src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img
+          style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+          src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1">
+      </a>
+    </p>
+  </div>
+</article>
+<div id="comment-form">
+  <div class="alert alert-info" role="alert">
+    Feel free to leave a feedback or questions !
+  </div>
+  <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfL9T8WBRm-Ac2uyu74lJXSYOqAuF6lLIUAulRArCsuiI1ZRQ/formResponse" target="response" method="POST" id="valid-form">
+    <div class="form-row align-items-center">
+      <div class="form-group col-md-5">
+        <label class="sr-only" for="person-name">Name</label>
+        <input type="text" class="form-control form-control-sm" id="person-name" placeholder="Your Name (Optional)"
+          aria-describedby="nameHelp" name="entry.982725972">
+        <input type="text" id="page-link" name="entry.1641222305" hidden>
+        <small id="nameHelp" class="form-text text-muted">You may put your GitHub Username.</small>
+      </div>
+      <div class="form-group col-md-7">
+        <label class="sr-only" for="email-address">Email address</label>
+        <input type="email" class="form-control form-control-sm" id="email-address" aria-describedby="emailHelp"
+          placeholder="Your Email Address (Optional)" name="entry.1652853191">
+        <small id="emailHelp" class="form-text text-muted">I'll never share your email with anyone
+          else.</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="sr-only" for="comment-section">Your Message</label>
+      <textarea class="form-control form-control-sm" id="comment-section" rows="3"
+        placeholder="Please enter your message or feedback. (Required)" aria-describedby="emailHelp"
+        name="entry.1062656232" required></textarea>
+      <div class="invalid-feedback">
+        Please Enter something !
+      </div>
+      <small id="textHelp" class="form-text text-muted">Enter upto 200 characters.</small>
+    </div>
+    <button class="btn btn-outline-info" type="submit">Send</button>
+  </form>
+  <iframe name="response" hidden></iframe>
+</div>
+<div class="alert alert-info" role="alert" id="comment-message" style="display: none;">
+  <h4 class="alert-heading">Thanks You 🥳</h4>
+  <p>Thanks a lot for reading this blog and sending me a feedback. I hope you liked it. I will get back to you
+    soon if you have added an email.</p>
+</div>
+<script>
+  (function () {
+    'use strict';
+    window.addEventListener('load', function () {
+      var form = document.getElementById('valid-form');
+      form.addEventListener('submit', function (event) {
+        document.getElementById('page-link').value = window.location.href;
+        document.getElementById('comment-form').style.display = 'none';
+        document.getElementById('comment-message').style.display = '';
+      }, false);
+    }, false);
+  })();
+</script>
+    </div>
+  </div>
+
+  <footer class="footer star">
+    <div id='stars'></div>
+    <div id='stars2'></div>
+    <div id='stars3'></div>
+    <div class="container">
+<div class="row">
+  <ul class="col-sm-6 list-inline">
+    <li class="list-inline-item"><a
+        href="https://gsoc.avinal.space/archives.html">Archives</a></li>
+    <li class="list-inline-item"><a
+        href="https://gsoc.avinal.space/categories.html">Categories</a></li>
+    <li class="list-inline-item"><a href="https://gsoc.avinal.space/tags.html">Tags</a></li>
+  </ul>
+  <p class="col-sm-6 text-sm-right text-muted">
+    <a href="https://github.com/avinal" target="_blank">
+      <img src="/images/gsoc-fossology.gif" class="img-fluid" style="max-width: 40%;">
+    </a>
+  </p>
+</div>    </div>
+  </footer>
+
+</body>
+
+</html>

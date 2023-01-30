@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Coding Week 4 Meeting-1 | New Buildsystem and CI/CD
+</title>
+  <link rel="canonical" href="https://gsoc.avinal.space/posts/report/meeting-5.html">
+
+  <link rel="apple-touch-icon" href="https://gsoc.avinal.space/apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" type="image/png" href="https://gsoc.avinal.space/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="https://gsoc.avinal.space/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="https://gsoc.avinal.space/site.webmanifest">
+  <meta name="theme-color" content="#333333">
+
+  <link rel="stylesheet" href="https://gsoc.avinal.space/theme/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://gsoc.avinal.space/theme/css/all.css">
+  <link rel="stylesheet" href="https://gsoc.avinal.space/theme/css/pygments/manni.min.css">
+  <link rel="stylesheet" href="https://gsoc.avinal.space/theme/css/theme.css">
+  <link rel="stylesheet" href="https://gsoc.avinal.space/theme/css/space.css">
+
+<link rel="alternate" type="application/atom+xml" title="Full Atom Feed" href="https://gsoc.avinal.space/feeds/all.atom.xml">
+<link rel="alternate" type="application/atom+xml" title="Categories Atom Feed"
+  href="https://gsoc.avinal.space/feeds/report.atom.xml">
+<meta name="description" content="In this seventh meeting question related to installing the FOSSology were discussed.">
+
+
+</head>
+
+<body style="font-family:Overpass Mono,monospace;">
+  <header class="header star">
+    <div id='stars'></div>
+    <div id='stars2'></div>
+    <div id='stars3'></div>
+    <div class="container">
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="title" style="font-family: ExodarOut;font-weight: lighter;"><a href="https://gsoc.avinal.space/">New Buildsystem and CI/CD</a>
+    </h1>
+    <p class="text-muted">A GSoC project by Avinal Kumar</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="https://avinal.space" target="_blank">about me</a></li>
+      <li class="list-inline-item text-muted">|</li>
+      <li class="list-inline-item"><a href="https://gsoc.avinal.space/pages/project.html">Project</a></li>
+      <li class="list-inline-item text-muted">|</li>
+      <li class="list-inline-item"><a href="https://gsoc.avinal.space/pages/timeline.html">Timeline</a></li>
+      <li class=" list-inline-item text-muted">|</li>
+      <li class="list-inline-item"><a class="fab fa-google" href="https://summerofcode.withgoogle.com/projects/#4535841440923648" target="_blank"></a></li>
+      <li class="list-inline-item"><a class="fab fa-github" href="https://github.com/avinal/fossology/tree/avinal/feat/cmake-buildsystem" target="_blank"></a></li>
+      <li class="list-inline-item"><a class="fab fa-linkedin" href="https://www.linkedin.com/in/avinal/" target="_blank"></a></li>
+      <li class="list-inline-item"><a class="fa fa-envelope" href="mailto:blog@avinal.space" target="_blank"></a></li>
+    </ul>
+  </div>
+</div>    </div>
+  </header>
+
+  <div class="main">
+    <div class="container">
+      <h2 style="font-weight:600;">Coding Week 4 Meeting-1
+</h2>
+      <hr>
+<article class="article">
+  <header>
+    <ul class="list-inline">
+      <li class="list-inline-item text-muted" title="2021-06-29T23:22:00+05:30">
+        <i class="fas fa-clock"></i>
+        Tue 29 June 2021
+      </li>
+      <li class="list-inline-item">
+        <i class="fas fa-folder-open"></i>
+        <a href="https://gsoc.avinal.space/category/report.html">report</a>
+      </li>
+      <li class="list-inline-item">
+        <i class="fas fa-tag"></i>
+        <a href="https://gsoc.avinal.space/tag/gsoc.html">#gsoc</a>,         <a href="https://gsoc.avinal.space/tag/fossology.html">#FOSSology</a>      </li>
+    </ul>
+  </header>
+  <div class="content">
+    <div class="alert alert-info" role="alert">In this seventh meeting question related to installing the FOSSology were discussed. </div><div class="section" id="attendees">
+<h2>Attendees</h2>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/mcjaeger">Michael C. Jaeger</a></li>
+<li><a class="reference external" href="https://github.com/GMishx">Gaurav Mishra</a></li>
+<li><a class="reference external" href="https://github.com/avinal">Avinal Kumar</a></li>
+</ul>
+</div>
+<div class="section" id="week-4-progress">
+<h2>Week 4 Progress</h2>
+<div class="alert alert-success" role="alert">
+<ul><li>CMake configuration files have been refactored to make each agent as a separate sub-project.</li>
+<li>Symbolic links are installing.</li>
+<li>VERSION files can be generated now during configure step</li>
+<li>To test the current progress, follow the instructions <a href="https://github.com/avinal/FOSSology/wiki#test-the-new-system-only-gcc-with-make-and-ninja-tested-for-now">here</a></li>
+</ul>
+</div></div>
+<div class="section" id="discussions">
+<h2>Discussions</h2>
+<ul>
+<li><p class="first"><strong>There are two types of replacements CMake can configure file with.</strong> <code>&#64;VARIABLE&#64;</code> <strong>and</strong> <code>${VARIABLE}</code> <strong>. Since in PHP</strong> <code>$variable</code> <strong>is used, it may create problem for CMake replacements. So may I replace them?</strong></p>
+<ul class="simple">
+<li>Yeah sure, go ahead. It will be more robust.</li>
+<li>The replacement of <code>$VARIABLE</code> can be stopped by using <code>&#64;ONLY</code> option in <code>configure_file(...)</code> command.</li>
+</ul>
+</li>
+<li><p class="first"><strong>How to generate vendor directory?</strong></p>
+<ul class="simple">
+<li>The code for generating vendor directory is in <code>src/Makefile</code>.</li>
+<li>Before executing code for the generation, make sure to copy <code>composer.json</code> and <code>composer.lock</code> to the target directory.</li>
+<li>There is also a patch that FOSSology needs to function as intended. Make sure to run that patch to check and apply.</li>
+<li>For now, we generate <em>vendor</em> while building, but it would be nice if it can be generated in the build step.</li>
+</ul>
+</li>
+<li><p class="first"><strong>Currently I am generating the VERSION file in configure step itself. Should I move it to the build or install step?</strong></p>
+<ul class="simple">
+<li>Yeah, please move it to the build step. As in configure step the data might be outdated.</li>
+</ul>
+</li>
+<li><p class="first"><strong>Is there any configuration for Release that we can use to install or test?</strong> <em>(Michael)</em></p>
+<ul class="simple">
+<li>Yeah, there are 4 inbuilt configurations for various levels of optimization and can be applied to tests and installation.</li>
+</ul>
+</li>
+<li><p class="first"><strong>Is the VERSION file is generated for each agent or whole project at once? Because in the latter case, the VERSION file can be generated as the last step.</strong></p>
+<ul class="simple">
+<li>No agent has a VERSION file along with the main VERSION file for FOSSology.</li>
+</ul>
+</li>
+<li><p class="first"><strong>How I can build and install a single agent or component?</strong></p>
+<ul>
+<li><p class="first">There are two ways you can build and install a specific agent or component only.</p>
+</li>
+<li><p class="first">The first one is quite simple. Just change your directory to the specific agent's directory and run all the usual commands for building and installing.</p>
+</li>
+<li><p class="first">The second one is a bit for typing work. This can be used directly from the top-level directory. After configuring the CMake, you can run the following command to install the specific component.</p>
+<div class="highlight"><pre><span></span><span class="c1"># for Unix Makefiles</span>
+make<span class="w"> </span>list_install_component<span class="w"> </span><span class="c1"># this will list all the available components</span>
+cmake<span class="w"> </span>-DCOMPONENT<span class="o">=</span>&lt;component-name&gt;<span class="w"> </span>-P<span class="w"> </span>cmake_install.cmake
+</pre></div>
+</li>
+<li><p class="first">I am writing a macro that will let us install a component by simply running <code>make install component</code>.</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="conclusion-and-further-plans">
+<h2>Conclusion and Further Plans</h2>
+<ul class="simple">
+<li>Implement generation of vendor directory.</li>
+<li>Move VERSION file generation to build step.</li>
+</ul>
+</div>
+
+    <hr>
+    <p align=center>
+      This Blog is licensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/?ref=chooser-v1"
+        target="_blank" rel="license noopener noreferrer">Attribution-NonCommercial 4.0 International<img
+          style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+          src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img
+          style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+          src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img
+          style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+          src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1">
+      </a>
+    </p>
+  </div>
+</article>
+<div id="comment-form">
+  <div class="alert alert-info" role="alert">
+    Feel free to leave a feedback or questions !
+  </div>
+  <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfL9T8WBRm-Ac2uyu74lJXSYOqAuF6lLIUAulRArCsuiI1ZRQ/formResponse" target="response" method="POST" id="valid-form">
+    <div class="form-row align-items-center">
+      <div class="form-group col-md-5">
+        <label class="sr-only" for="person-name">Name</label>
+        <input type="text" class="form-control form-control-sm" id="person-name" placeholder="Your Name (Optional)"
+          aria-describedby="nameHelp" name="entry.982725972">
+        <input type="text" id="page-link" name="entry.1641222305" hidden>
+        <small id="nameHelp" class="form-text text-muted">You may put your GitHub Username.</small>
+      </div>
+      <div class="form-group col-md-7">
+        <label class="sr-only" for="email-address">Email address</label>
+        <input type="email" class="form-control form-control-sm" id="email-address" aria-describedby="emailHelp"
+          placeholder="Your Email Address (Optional)" name="entry.1652853191">
+        <small id="emailHelp" class="form-text text-muted">I'll never share your email with anyone
+          else.</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="sr-only" for="comment-section">Your Message</label>
+      <textarea class="form-control form-control-sm" id="comment-section" rows="3"
+        placeholder="Please enter your message or feedback. (Required)" aria-describedby="emailHelp"
+        name="entry.1062656232" required></textarea>
+      <div class="invalid-feedback">
+        Please Enter something !
+      </div>
+      <small id="textHelp" class="form-text text-muted">Enter upto 200 characters.</small>
+    </div>
+    <button class="btn btn-outline-info" type="submit">Send</button>
+  </form>
+  <iframe name="response" hidden></iframe>
+</div>
+<div class="alert alert-info" role="alert" id="comment-message" style="display: none;">
+  <h4 class="alert-heading">Thanks You 🥳</h4>
+  <p>Thanks a lot for reading this blog and sending me a feedback. I hope you liked it. I will get back to you
+    soon if you have added an email.</p>
+</div>
+<script>
+  (function () {
+    'use strict';
+    window.addEventListener('load', function () {
+      var form = document.getElementById('valid-form');
+      form.addEventListener('submit', function (event) {
+        document.getElementById('page-link').value = window.location.href;
+        document.getElementById('comment-form').style.display = 'none';
+        document.getElementById('comment-message').style.display = '';
+      }, false);
+    }, false);
+  })();
+</script>
+    </div>
+  </div>
+
+  <footer class="footer star">
+    <div id='stars'></div>
+    <div id='stars2'></div>
+    <div id='stars3'></div>
+    <div class="container">
+<div class="row">
+  <ul class="col-sm-6 list-inline">
+    <li class="list-inline-item"><a
+        href="https://gsoc.avinal.space/archives.html">Archives</a></li>
+    <li class="list-inline-item"><a
+        href="https://gsoc.avinal.space/categories.html">Categories</a></li>
+    <li class="list-inline-item"><a href="https://gsoc.avinal.space/tags.html">Tags</a></li>
+  </ul>
+  <p class="col-sm-6 text-sm-right text-muted">
+    <a href="https://github.com/avinal" target="_blank">
+      <img src="/images/gsoc-fossology.gif" class="img-fluid" style="max-width: 40%;">
+    </a>
+  </p>
+</div>    </div>
+  </footer>
+
+</body>
+
+</html>

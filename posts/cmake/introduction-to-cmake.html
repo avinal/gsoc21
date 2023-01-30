@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Hello CMake! | New Buildsystem and CI/CD
+</title>
+  <link rel="canonical" href="https://gsoc.avinal.space/posts/cmake/introduction-to-cmake.html">
+
+  <link rel="apple-touch-icon" href="https://gsoc.avinal.space/apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" type="image/png" href="https://gsoc.avinal.space/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="https://gsoc.avinal.space/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="https://gsoc.avinal.space/site.webmanifest">
+  <meta name="theme-color" content="#333333">
+
+  <link rel="stylesheet" href="https://gsoc.avinal.space/theme/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://gsoc.avinal.space/theme/css/all.css">
+  <link rel="stylesheet" href="https://gsoc.avinal.space/theme/css/pygments/manni.min.css">
+  <link rel="stylesheet" href="https://gsoc.avinal.space/theme/css/theme.css">
+  <link rel="stylesheet" href="https://gsoc.avinal.space/theme/css/space.css">
+
+<link rel="alternate" type="application/atom+xml" title="Full Atom Feed" href="https://gsoc.avinal.space/feeds/all.atom.xml">
+<link rel="alternate" type="application/atom+xml" title="Categories Atom Feed"
+  href="https://gsoc.avinal.space/feeds/cmake.atom.xml">
+<meta name="description" content="CMake stands for Cross-platform Make. Normally, a build tool like Make will parse a configuration file (Makefile) that contains all the commands required to build an artifact based on the source files and other resources inside the project.">
+
+
+</head>
+
+<body style="font-family:Overpass Mono,monospace;">
+  <header class="header star">
+    <div id='stars'></div>
+    <div id='stars2'></div>
+    <div id='stars3'></div>
+    <div class="container">
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="title" style="font-family: ExodarOut;font-weight: lighter;"><a href="https://gsoc.avinal.space/">New Buildsystem and CI/CD</a>
+    </h1>
+    <p class="text-muted">A GSoC project by Avinal Kumar</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="https://avinal.space" target="_blank">about me</a></li>
+      <li class="list-inline-item text-muted">|</li>
+      <li class="list-inline-item"><a href="https://gsoc.avinal.space/pages/project.html">Project</a></li>
+      <li class="list-inline-item text-muted">|</li>
+      <li class="list-inline-item"><a href="https://gsoc.avinal.space/pages/timeline.html">Timeline</a></li>
+      <li class=" list-inline-item text-muted">|</li>
+      <li class="list-inline-item"><a class="fab fa-google" href="https://summerofcode.withgoogle.com/projects/#4535841440923648" target="_blank"></a></li>
+      <li class="list-inline-item"><a class="fab fa-github" href="https://github.com/avinal/fossology/tree/avinal/feat/cmake-buildsystem" target="_blank"></a></li>
+      <li class="list-inline-item"><a class="fab fa-linkedin" href="https://www.linkedin.com/in/avinal/" target="_blank"></a></li>
+      <li class="list-inline-item"><a class="fa fa-envelope" href="mailto:blog@avinal.space" target="_blank"></a></li>
+    </ul>
+  </div>
+</div>    </div>
+  </header>
+
+  <div class="main">
+    <div class="container">
+      <h2 style="font-weight:600;">Hello CMake!
+</h2>
+      <hr>
+<article class="article">
+  <header>
+    <ul class="list-inline">
+      <li class="list-inline-item text-muted" title="2021-05-24T23:56:00+05:30">
+        <i class="fas fa-clock"></i>
+        Mon 24 May 2021
+      </li>
+      <li class="list-inline-item">
+        <i class="fas fa-folder-open"></i>
+        <a href="https://gsoc.avinal.space/category/cmake.html">cmake</a>
+      </li>
+      <li class="list-inline-item">
+        <i class="fas fa-tag"></i>
+        <a href="https://gsoc.avinal.space/tag/cmake.html">#cmake</a>,         <a href="https://gsoc.avinal.space/tag/gsoc.html">#gsoc</a>,         <a href="https://gsoc.avinal.space/tag/fossology.html">#fossology</a>,         <a href="https://gsoc.avinal.space/tag/gsoc21.html">#gsoc21</a>      </li>
+    </ul>
+  </header>
+  <div class="content">
+    <p>I proposed a new architecture for FOSSology that uses CMake instead of bare-metal Make as a Google Summer of Code 2021 project. Although these tutorials will be useful for anyone interested in learning CMake they are specifically tailored to the FOSSology project. This is the first blog on CMake in this series. In this blog, I will discuss CMake syntax and various features.</p>
+<p><span class="html-raw"><h3>What is CMake?</h3>
+<img class="float-md-right rounded border border-info ml-3" src="/images/cmake.png" style="max-width:300px;"></span></p>
+<p>CMake stands for Cross-platform Make. Normally, a build tool like Make will parse a configuration file (Makefile) that contains all the commands required to build an artifact based on the source files and other resources inside the project. On the other hand, CMake will also parse a configuration file (CMakeLists.txt), but instead of directly build the artifact, it’ll generate another configuration file that will build the artifact.</p>
+<p>This approach is very common in Computer Science and is called <em>adding another level of indirection</em>. In short, you may say that:</p>
+<p><span class="html-raw"><div class="alert alert-secondary" role="alert">With just one configuration file you’ll be able to generate different configuration files to build your project for different platforms (Make, Visual Studio, etc).</div></span></p>
+<p>Another nice CMake feature is the so-called out-of-source build. Any file required for the final build, executables included, will be stored in a separated build directory (usually called build/). This prevents cluttering up the source directory and makes it easy to start over again: just remove the build directory and you are done.</p>
+<p><span class="html-raw"><h3>CMake Syntax</h3><img class="float-md-left mt-3 mr-3" src="https://imgs.xkcd.com/comics/compiling.png" style="max-width:310px;"></span></p>
+<p>CMake unlike Make is a configuration language itself. CMake supplies a rich library of inherent functions as well as common programming language features like conditions, looping, macros, and functions. In addition to that CMake is highly modular and you can always write a CMake module yourself independent of any project. Specifically for C/C++ programming, it supplies commands to find and link libraries automatically and lot many features.</p>
+<p><span class="html-raw"><h4>Language Rules</h4></span></p>
+<p>As mentioned above CMake is a language itself hence there are some language rules related to syntax, comments, variables, etc.</p>
+<ul>
+<li><p class="first">There are two types of comment in CMake, both start with <code>#</code> character. The first one is line comments, as clear by name it is delimited by a newline. The other one is bracket comment and can span until the matching brackets are found.</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="c"># This is a line comment and it ends with the line.</span>
+<span class="c">#[[This is a bracket comment and it can span up to multiple lines.</span>
+<span class="err">But</span><span class="w"> </span><span class="err">it</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">only</span><span class="w"> </span><span class="err">supported</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">CMake</span><span class="w"> </span><span class="err">3.0</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="err">later.]]</span>
+</pre></div>
+</blockquote>
+</li>
+<li><p class="first">Variables in CMake are like any other programming language. They are case-sensitive and have any alphanumeric characters. In general, it is recommended using upper case names as variables. They can be assigned and unassigned using <code>set</code> and <code>unset</code> commands. A variable can be referenced using <code>${VARIABLE_NAME}</code>.</p>
+<p><span class="html-raw"><div class="alert alert-danger" role="alert">CMake reserves some types of identifers:<ul><li>begin with <b>CMAKE_</b> (upper-, lower-, or mixed-case)</li><li>begin with <b>_CMAKE_</b> (upper-, lower-, or mixed-case)</li><li>begin with <b>_</b> followed by the name of any CMake Command</li></ul></div></span></p>
+</li>
+<li><p class="first">The CMake commands are case insensitive in the latest version (3.0) of CMake. That means <code>message()</code>, <code>Message()</code> or <code>MESSAGE()</code> are all same.</p>
+</li>
+</ul>
+<p><span class="html-raw"><h4>Basic CMake Commands</h4></span></p>
+<ul>
+<li><p class="first">The <code>project()</code> command is used to set the name of the CMake project and optionally a language that is used by the project. Every top-level CMake configuration must have this option set. The syntax is as below:</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="nb">project</span><span class="w"> </span><span class="p">(</span><span class="s">projectname</span><span class="w"> </span><span class="s">[CXX]</span><span class="w"> </span><span class="s">[C]</span><span class="w"> </span><span class="s">[Java]</span><span class="w"> </span><span class="s">[NONE]</span><span class="p">)</span>
+</pre></div>
+</blockquote>
+<p>If no language is specified then CMake defaults to supporting C/C++. If <code>NONE</code> is specified then no language support is enabled.</p>
+</li>
+<li><p class="first">The <code>set()</code> command is used to set a variable to a value or lists of values. It is one of the most used CMake commands. The accompanying command is <code>unset()</code>. The <code>unset()</code> command is used to unset a variable or remove a variable from the current scope. The syntax for the three commands are:</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="nb">set</span><span class="w"> </span><span class="p">(</span><span class="s">BLOG_TITLE</span><span class="w"> </span><span class="s2">&quot;CMake Introduction&quot;</span><span class="p">)</span><span class="w">                </span><span class="c"># assign single value</span>
+<span class="nb">set</span><span class="w"> </span><span class="p">(</span><span class="s">BLOG_TAGS</span><span class="w"> </span><span class="s2">&quot;gsoc&quot;</span><span class="w"> </span><span class="s2">&quot;cmake&quot;</span><span class="w"> </span><span class="s2">&quot;fossology&quot;</span><span class="w"> </span><span class="s2">&quot;gsoc21&quot;</span><span class="p">)</span><span class="w">  </span><span class="c"># assign a list of values</span>
+
+<span class="nb">unset</span><span class="w"> </span><span class="p">(</span><span class="s">BLOG_TITLE</span><span class="p">)</span><span class="w">                                   </span><span class="c"># unset BLOG_TITLE</span>
+</pre></div>
+</blockquote>
+</li>
+<li><p class="first">The <code>message()</code> command can be used to display formatted messages with different alert modes. There are lots of <cite>modes &lt;https://cmake.org/cmake/help/v3.20/command/message.html#general-messages&gt;</cite> of displaying messages. The syntax is :</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="nb">message</span><span class="w"> </span><span class="p">(</span><span class="s">[&lt;mode&gt;]</span><span class="w"> </span><span class="s2">&quot;message text&quot;</span><span class="w"> </span><span class="s">...</span><span class="p">)</span>
+
+<span class="nb">message</span><span class="p">(</span><span class="s">NOTICE</span><span class="w"> </span><span class="s2">&quot;Hey this is ${BLOG_TITLE}&quot;</span><span class="p">)</span><span class="w">         </span><span class="c"># Example message with variable</span>
+</pre></div>
+</blockquote>
+</li>
+<li><p class="first">The <code>cmake_minimum_required()</code> is used to set the minimum CMake version to use to generate the build files. If any older version is used than specified then the user gets an error message. It must be specified at the top of the <em>CMakeLists.txt</em> file.</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="w"> </span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.0</span><span class="p">)</span>
+</pre></div>
+</blockquote>
+</li>
+<li><p class="first">The commands <code>add_executable()</code> and <code>add_library()</code> specifies what executables and libraries to build and what source files must be used to build them. One of the two commands must be used for any binary generation.</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="nb">add_executable</span><span class="p">(</span><span class="s">&lt;name&gt;</span><span class="w"> </span><span class="s">[WIN32]</span><span class="w"> </span><span class="s">[MACOSX_BUNDLE]</span>
+<span class="w">    </span><span class="s">[EXCLUDE_FROM_ALL]</span>
+<span class="w">    </span><span class="s">[source1]</span><span class="w"> </span><span class="s">[source2</span><span class="w"> </span><span class="s">...]</span><span class="p">)</span>
+
+<span class="nb">add_library</span><span class="p">(</span><span class="s">&lt;name&gt;</span><span class="w"> </span><span class="s">[STATIC</span><span class="w"> </span><span class="s">|</span><span class="w"> </span><span class="s">SHARED</span><span class="w"> </span><span class="s">|</span><span class="w"> </span><span class="s">MODULE]</span>
+<span class="w">    </span><span class="s">[EXCLUDE_FROM_ALL]</span>
+<span class="w">    </span><span class="s">[&lt;source&gt;...]</span><span class="p">)</span>
+</pre></div>
+</blockquote>
+</li>
+</ul>
+<p><span class="html-raw"><h4>Flow Control</h4></span></p>
+<p>CMake provides three flow control structures. They are conditional statements (<code>if</code>), looping constructs (<code>foreach</code> and <code>while</code>) and procedure definitions (<code>function</code> and <code>macro</code>). I will explain each of them one by one.</p>
+<ul>
+<li><p class="first"><strong>Conditional Statements</strong>
+The <code>if</code> command in CMake is just like the <code>if</code> command in any other language. It evaluates its expression and based on that either executes the code in its body or optionally the code in the <code>else</code> clause.</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="nb">if</span><span class="w"> </span><span class="p">(</span><span class="s">FOO</span><span class="p">)</span>
+<span class="w">    </span><span class="c"># do something here</span>
+<span class="nb">elseif</span><span class="w"> </span><span class="p">(</span><span class="s">BAR</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">if</span><span class="w"> </span><span class="p">(</span><span class="s">NESTED_BAR</span><span class="p">)</span>
+<span class="w">        </span><span class="c"># do something nested here</span>
+<span class="w">    </span><span class="nb">endif</span><span class="p">(</span><span class="s">NESTED_BAR</span><span class="p">)</span>
+<span class="w">    </span><span class="c"># do something else</span>
+<span class="nb">else</span><span class="w"> </span><span class="p">()</span>
+<span class="w">    </span><span class="c"># do something here</span>
+<span class="nb">endif</span><span class="w"> </span><span class="p">(</span><span class="s">FOO</span><span class="p">)</span>
+</pre></div>
+</blockquote>
+<p>You can use many operators to form complex conditions. Available options are <strong>NOT</strong>, <strong>AND</strong>, <strong>OR</strong>, <strong>COMMAND</strong>, <strong>DEFINED</strong>, <strong>EXISTS</strong>, <strong>IS_DIRECTORY</strong>, <strong>IS_ABSOLUTE</strong>, <strong>MATCHES</strong>, <strong>IS_NEWER_THAN</strong>,  and operators for numerical comparisons <strong>EQUAL</strong>, <strong>LESS</strong>, <strong>GREATER</strong>, <strong>STRLESS</strong>, <strong>STREQUAL</strong>, <strong>STRGREATER</strong>.</p>
+</li>
+<li><p class="first"><strong>Looping Constructs</strong>
+The <code>foreach</code> command enables you to execute a group of CMake commands repeatedly on the members of a list.The first argument of the foreach command is the name of the variable that will take on a different value with each iteration of the loop. The remaining arguments are the list of values over which to loop.</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="nb">foreach</span><span class="p">(</span><span class="s">&lt;loop_var&gt;</span><span class="w"> </span><span class="s">&lt;items&gt;</span><span class="p">)</span>
+<span class="w">    </span><span class="err">&lt;commands&gt;</span>
+<span class="nb">endforeach</span><span class="p">()</span>
+</pre></div>
+</blockquote>
+<p>The <code>while</code> command provides for looping based on a test condition. The format for the test expression in the <code>while</code> command is the same as that for the <code>if</code> command described earlier.</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="nb">while</span><span class="p">(</span><span class="s">&lt;condition&gt;</span><span class="p">)</span>
+<span class="w">    </span><span class="err">&lt;commands&gt;</span>
+<span class="nb">endwhile</span><span class="p">()</span>
+</pre></div>
+</blockquote>
+<p>It is worth mentioning that foreach loops can be nested and that the loop variable is replaced prior to any other variable expansion. This means that in the body of a foreach loop you can construct variable names using the loop variable.</p>
+</li>
+<li><p class="first"><strong>Procedure Definitions</strong>
+A function in CMake is very much like a function in C or C++. You can pass arguments into it, and the arguments passed in become variables within the function. The first argument is the name of the function to define. All additional arguments are formal parameters to the function.</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="nb">function</span><span class="p">(</span><span class="s">&lt;name&gt;</span><span class="w"> </span><span class="s">[&lt;arg1&gt;</span><span class="w"> </span><span class="s">...]</span><span class="p">)</span>
+<span class="w">    </span><span class="c"># write the function body here</span>
+<span class="w">    </span><span class="err">&lt;commands&gt;</span>
+<span class="nb">endfunction</span><span class="p">()</span>
+</pre></div>
+</blockquote>
+<p>Macros are defined and called in the same manner as functions. The main differences are that a macro does not push and pop a new variable scope, and the arguments to a macro are not treated as variables but are string replaced prior to execution. This is very much like the differences between a macro and a function in C or C++. The first argument is the name of the macro to create. All additional arguments are formal parameters to the macro.</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="nb">macro</span><span class="p">(</span><span class="s">&lt;name&gt;</span><span class="w"> </span><span class="s">[&lt;arg1&gt;</span><span class="w"> </span><span class="s">...]</span><span class="p">)</span>
+<span class="w">    </span><span class="c"># write macro definition here</span>
+<span class="w">    </span><span class="err">&lt;commands&gt;</span>
+<span class="nb">endmacro</span><span class="p">()</span>
+</pre></div>
+</blockquote>
+</li>
+</ul>
+<p><span class="html-raw"><h3>A Hello CMake example</h3></span></p>
+<p>This example compiles a simple <em>hello_cmake</em> program. This example and the terminal commands are used in Linux context, however there is very little difference in different platforms. Make sure to <a class="reference external" href="https://cmake.org/install/">install CMake</a> for your platform.</p>
+<ul>
+<li><p class="first">Create a folder and create a file named <code>hello_cmake.cpp</code> in that. You may add your own code. Here is my example code.</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello CMake</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</blockquote>
+</li>
+<li><p class="first">Create another file named <code>CMakeLists.txt</code> and add the following script in that file.</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.0</span><span class="p">)</span>
+
+<span class="c"># set project name</span>
+<span class="nb">project</span><span class="p">(</span><span class="s">hello_cmake</span><span class="p">)</span>
+
+<span class="c"># print compiler info</span>
+<span class="nb">message</span><span class="p">(</span><span class="s2">&quot;The compiler is ${CMAKE_CXX_COMPILER}&quot;</span><span class="p">)</span>
+
+<span class="c"># add executable</span>
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">Hello_cmake</span><span class="w"> </span><span class="s">hello_cmake.cpp</span><span class="p">)</span>
+</pre></div>
+</blockquote>
+</li>
+<li><p class="first">Create another directory <code>build</code> and run the following commands.</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="c1"># create folder and change directory</span>
+mkdir<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+
+<span class="c1"># run cmake config</span>
+cmake<span class="w"> </span>..
+
+<span class="c1"># build project</span>
+cmake<span class="w"> </span>--build<span class="w"> </span>.
+</pre></div>
+</blockquote>
+</li>
+</ul>
+<p>You will be able to see a <code>Hello_cmake</code> binary in the <em>build</em> folder. Hooray you have successfully built a project using CMake. For more <a class="reference external" href="https://cmake.org/cmake/help/v3.20/guide/tutorial/index.html">read here</a>. In the next blog I will explain how to create CMake configuration for a more complex project.</p>
+<p><span class="html-raw"><p align=center>Thanks!</span></p>
+<p><span class="html-raw"><h3>References and Credits</h3></span></p>
+<ul class="simple">
+<li><a class="reference external" href="https://cmake.org">CMake Website</a></li>
+<li><a class="reference external" href="https://cmake.org/cmake/help/latest/index.html">CMake Documentation</a></li>
+<li><a class="reference external" href="https://www.kitware.com/what-we-offer/#books">Mastering CMake Book</a></li>
+<li><a class="reference external" href="https://cmake.org/cmake/help/v3.20/guide/tutorial/index.html">CMake Tutorial</a></li>
+<li><a class="reference external" href="https://prateekvjoshi.com/2014/02/01/cmake-vs-make/">You (C)Make Me Happy</a></li>
+<li><a class="reference external" href="https://xkcd.com/303/">Compiling xkcd.com</a></li>
+</ul>
+
+    <hr>
+    <p align=center>
+      This Blog is licensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/?ref=chooser-v1"
+        target="_blank" rel="license noopener noreferrer">Attribution-NonCommercial 4.0 International<img
+          style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+          src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img
+          style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+          src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img
+          style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+          src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1">
+      </a>
+    </p>
+  </div>
+</article>
+<div id="comment-form">
+  <div class="alert alert-info" role="alert">
+    Feel free to leave a feedback or questions !
+  </div>
+  <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfL9T8WBRm-Ac2uyu74lJXSYOqAuF6lLIUAulRArCsuiI1ZRQ/formResponse" target="response" method="POST" id="valid-form">
+    <div class="form-row align-items-center">
+      <div class="form-group col-md-5">
+        <label class="sr-only" for="person-name">Name</label>
+        <input type="text" class="form-control form-control-sm" id="person-name" placeholder="Your Name (Optional)"
+          aria-describedby="nameHelp" name="entry.982725972">
+        <input type="text" id="page-link" name="entry.1641222305" hidden>
+        <small id="nameHelp" class="form-text text-muted">You may put your GitHub Username.</small>
+      </div>
+      <div class="form-group col-md-7">
+        <label class="sr-only" for="email-address">Email address</label>
+        <input type="email" class="form-control form-control-sm" id="email-address" aria-describedby="emailHelp"
+          placeholder="Your Email Address (Optional)" name="entry.1652853191">
+        <small id="emailHelp" class="form-text text-muted">I'll never share your email with anyone
+          else.</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="sr-only" for="comment-section">Your Message</label>
+      <textarea class="form-control form-control-sm" id="comment-section" rows="3"
+        placeholder="Please enter your message or feedback. (Required)" aria-describedby="emailHelp"
+        name="entry.1062656232" required></textarea>
+      <div class="invalid-feedback">
+        Please Enter something !
+      </div>
+      <small id="textHelp" class="form-text text-muted">Enter upto 200 characters.</small>
+    </div>
+    <button class="btn btn-outline-info" type="submit">Send</button>
+  </form>
+  <iframe name="response" hidden></iframe>
+</div>
+<div class="alert alert-info" role="alert" id="comment-message" style="display: none;">
+  <h4 class="alert-heading">Thanks You 🥳</h4>
+  <p>Thanks a lot for reading this blog and sending me a feedback. I hope you liked it. I will get back to you
+    soon if you have added an email.</p>
+</div>
+<script>
+  (function () {
+    'use strict';
+    window.addEventListener('load', function () {
+      var form = document.getElementById('valid-form');
+      form.addEventListener('submit', function (event) {
+        document.getElementById('page-link').value = window.location.href;
+        document.getElementById('comment-form').style.display = 'none';
+        document.getElementById('comment-message').style.display = '';
+      }, false);
+    }, false);
+  })();
+</script>
+    </div>
+  </div>
+
+  <footer class="footer star">
+    <div id='stars'></div>
+    <div id='stars2'></div>
+    <div id='stars3'></div>
+    <div class="container">
+<div class="row">
+  <ul class="col-sm-6 list-inline">
+    <li class="list-inline-item"><a
+        href="https://gsoc.avinal.space/archives.html">Archives</a></li>
+    <li class="list-inline-item"><a
+        href="https://gsoc.avinal.space/categories.html">Categories</a></li>
+    <li class="list-inline-item"><a href="https://gsoc.avinal.space/tags.html">Tags</a></li>
+  </ul>
+  <p class="col-sm-6 text-sm-right text-muted">
+    <a href="https://github.com/avinal" target="_blank">
+      <img src="/images/gsoc-fossology.gif" class="img-fluid" style="max-width: 40%;">
+    </a>
+  </p>
+</div>    </div>
+  </footer>
+
+</body>
+
+</html>
