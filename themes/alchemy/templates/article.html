@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block head %}
+{{ super() }}
+<meta name="description" content="{{ article.summary|striptags }}">
+{% endblock %}
+
+{% block title %}
+{{ article.title|striptags }} {{ super() }}
+{% endblock %}
+
+{% block page_header %}
+{{ article.title }}
+{% endblock %}
+
+{% block content %}
+<article class="article">
+  <header>
+    <ul class="list-inline">
+      <li class="list-inline-item text-muted" title="{{ article.date.isoformat() }}">
+        <i class="fas fa-clock"></i>
+        {{ article.locale_date }}
+      </li>
+      <li class="list-inline-item">
+        <i class="fas fa-folder-open"></i>
+        <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
+      </li>
+      {% if not HIDE_AUTHORS and article.authors %}
+      <li class="list-inline-item">
+        <i class="fas fa-user"></i>
+        {% for author in article.authors %}
+        <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>{% if not loop.last %}, {% endif %}
+        {% endfor %}
+      </li>
+      {% endif %}
+      {% if article.tags %}
+      <li class="list-inline-item">
+        <i class="fas fa-tag"></i>
+        {% for tag in article.tags %}
+        <a href="{{ SITEURL }}/{{ tag.url }}">#{{ tag }}</a>{% if not loop.last %}, {% endif %}
+        {% endfor %}
+      </li>
+      {% endif %}
+      {% if article.translations %}
+      <li class="list-inline-item">
+        <i class="fas fa-globe"></i>
+        {% for translation in article.translations %}
+        <a href="{{ SITEURL }}/{{ translation.url }}">{{ translation.lang }}</a>
+        {% endfor %}
+      </li>
+      {% endif %}
+    </ul>
+  </header>
+  <div class="content">
+    {{ article.content }}
+    <hr>
+    <p align=center>
+      This Blog is licensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/?ref=chooser-v1"
+        target="_blank" rel="license noopener noreferrer">Attribution-NonCommercial 4.0 International<img
+          style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+          src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img
+          style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+          src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img
+          style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+          src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1">
+      </a>
+    </p>
+    {% if article.link %}
+    <p class="link-button"><i class="fas fa-link"></i> <a href="{{ article.link }}" rel="bookmark">
+        {{ article.link }}
+      </a></p>
+    {% endif %}
+  </div>
+</article>
+{% include 'include/comments.html' %}
+{% endblock %}

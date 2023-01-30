@@ -1,0 +1,75 @@
+{%- macro url(destination) -%}
+{%- if destination|lower|truncate(4, True, '') == 'http' or not destination -%}
+{{ destination }}
+{%- elif destination|first == '/' -%}
+{{ SITEURL + destination }}
+{%- else -%}
+{{ SITEURL + '/' + destination }}
+{%- endif -%}
+{%- endmacro -%}
+<!doctype html>
+<html lang="{{ DEFAULT_LANG }}">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>{% block title %}| {{ SITENAME }}{% endblock %}</title>
+  <link rel="canonical" href="{{ SITEURL }}/{{ output_file }}">
+
+  {% if RFG_FAVICONS %}
+  <link rel="apple-touch-icon" href="{{ SITEURL }}/apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" type="image/png" href="{{ SITEURL }}/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="{{ SITEURL }}/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="{{ SITEURL }}/site.webmanifest">
+  <meta name="theme-color" content="#333333">
+  {% endif %}
+
+  <link rel="stylesheet" href="{{ url(BOOTSTRAP_CSS or '/theme/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url(FONTAWESOME_CSS or '/theme/css/all.css') }}">
+  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pygments/{{ PYGMENTS_STYLE|default('default') }}.min.css">
+  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/theme.css">
+  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/space.css">
+  {% for stylesheet in THEME_CSS_OVERRIDES or () %}
+  <link rel="stylesheet" href="{{ url(stylesheet) }}">
+  {% endfor %}
+
+  {% include 'include/xml_feeds.html' %}
+  {% block head %}{% endblock %}
+  {% include 'include/analytics.html' %}
+</head>
+
+<body style="font-family:Overpass Mono,monospace;">
+  <header class="header star">
+    <div id='stars'></div>
+    <div id='stars2'></div>
+    <div id='stars3'></div>
+    <div class="container">
+      {% include 'include/header.html' %}
+    </div>
+  </header>
+
+  <div class="main">
+    <div class="container">
+      <h2 style="font-weight:600;">{% block page_header %}{% endblock %}</h2>
+      <hr>
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+
+  <footer class="footer star">
+    <div id='stars'></div>
+    <div id='stars2'></div>
+    <div id='stars3'></div>
+    <div class="container">
+      {% include 'include/footer.html' %}
+    </div>
+  </footer>
+
+  {% for script in THEME_JS_OVERRIDES or () %}
+  <script type="text/javascript" src="{{ url(script) }}" crossorigin="anonymous"></script>
+  {% endfor %}
+</body>
+
+</html>

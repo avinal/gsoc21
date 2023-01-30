@@ -1,0 +1,5 @@
+# build folders
+output
+__pycache__
+.vscode
+timeline.html
