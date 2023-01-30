@@ -1,3 +1,5 @@
+**NOTE: This repository contents has been moved to https://github.com/avinal/avinal.github.io**
+
 # New Build System and improving CI/CD workflow
 
 <p align=center><a href="https://wakatime.com/badge/github/avinal/fossology"><img src="https://wakatime.com/badge/github/avinal/fossology.svg"></a></p>
